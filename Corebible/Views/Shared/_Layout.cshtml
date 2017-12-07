@@ -425,7 +425,7 @@
                             <span class="profile-status online"></span>
                         </h3>
 
-                        <p class="profile-title">Web Developer</p>
+                        <p class="profile-title"></p>
 
                     </div>
 
@@ -446,7 +446,7 @@
                    
                     <li class="">
                         <a href="javascript:;">
-                            <i class="fa fa-suitcase"></i>
+                            <i class="fa fa-book"></i>
                             <span class="title">Read The Bible</span>
                             <span class="arrow "></span>
                         </a>
@@ -454,19 +454,19 @@
                     </li>
                     <li class="">
                         <a href="javascript:;">
-                            <i class="fa fa-suitcase"></i>
+                            <i class="fa fa-group"></i>
                             <span class="title">Groups</span>
                             <span class="arrow "></span>
                         </a>
                         <ul class="sub-menu">
                             <li>
-                                <a class="" href="ui-typography.html">Your Groups</a>
+                                <a class="" href="@Url.Action("Index","Groups")">Your Groups</a>
                             </li>
                             <li>
-                                <a class="" href="ui-accordion.html">Create A Group</a>
+                                <a class="" href="@Url.Action("Create","Groups")">Create A Group</a>
                             </li>
                             <li>
-                                <a class="" href="ui-progress.html">Find New Groups</a>
+                                <a class="" href="@Url.Action("FindGroups","Groups")">Find New Groups</a>
                             </li>
                           
                         </ul>
@@ -479,26 +479,12 @@
                         </a>
                         <ul class="sub-menu">
                             <li>
-                                <a class="" href="form-elements.html">Form Elements</a>
+                                <a class="" href="@Url.Action("Index","Friends")">Your Friends</a>
                             </li>
                             <li>
-                                <a class="" href="form-components.html">Form Components</a>
+                                <a class="" href="#">Find Friends</a>
                             </li>
-                            <li>
-                                <a class="" href="form-wizard.html">Form Wizard</a>
-                            </li>
-                            <li>
-                                <a class="" href="form-validation.html">Form Validations</a>
-                            </li>
-                            <li>
-                                <a class="" href="form-fileupload.html">File Upload & Dropzone</a>
-                            </li>
-                            <li>
-                                <a class="" href="form-editors.html">Editors</a>
-                            </li>
-                            <li>
-                                <a class="" href="form-masks.html">Input Masks</a>
-                            </li>
+                           
                         </ul>
                     </li>
                     <li class="">
@@ -509,71 +495,40 @@
                         </a>
                         <ul class="sub-menu">
                             <li>
-                                <a class="" href="ui-pricing.html">Pricing tables</a>
+                                <a class="" href="ui-pricing.html">Your Messages</a>
                             </li>
                             <li>
-                                <a class="" href="ui-profile.html">Profile</a>
+                                <a class="" href="ui-profile.html">Send A New Message</a>
                             </li>
-                            <li>
-                                <a class="" href="ui-timeline.html">Timeline</a>
-                            </li>
-                            <li>
-                                <a class="" href="ui-invoice.html">Invoice</a>
-                            </li>
-                            <li>
-                                <a class="" href="ui-members.html">Members</a>
-                            </li>
-                            <li>
-                                <a class="" href="ui-gallery.html">Gallery</a>
-                            </li>
-                            <li>
-                                <a class="" href="ui-search.html">Search</a>
-                            </li>
-                            <li>
-                                <a class="" href="ui-blogs.html">Blogs</a>
-                            </li>
-                            <li>
-                                <a class="" href="ui-imagecrop.html">Image cropper</a>
-                            </li>
-                            <li>
-                                <a class="" href="ui-tocify.html">Tocify</a>
-                            </li>
-                            <li>
-                                <a class="" href="ui-faq.html">FAQ</a>
-                            </li>
-                            <li>
-                                <a class="" href="ui-404.html">404</a>
-                            </li>
-                            <li>
-                                <a class="" href="ui-500.html">500</a>
-                            </li>
+                           
                         </ul>
                     </li>
                     <li class="">
                         <a href="javascript:;">
                             <i class="fa fa-bar-chart"></i>
                             <span class="title">Settings</span>
-                            <span class="arrow "></span><span class="label label-orange">HOT</span>
+                            <span class="arrow "></span>
                         </a>
                         <ul class="sub-menu">
                             <li>
-                                <a class="" href="charts-morris.html">Morris Charts</a>
+                                <a class="" href="charts-morris.html"> Update Information</a>
                             </li>
                             <li>
-                                <a class="" href="charts-chartjs.html">Chart JS</a>
+                                <a class="" href="charts-chartjs.html">Change Profile Privacy</a>
+                            </li>
+                            @using (Html.BeginForm("LogOff", "Account", FormMethod.Post, new { id = "logoutForm", @class = "navbar-right" }))
+                            {
+                                @Html.AntiForgeryToken()
+                            }
+                            <li>
+                                <a href="javascript:document.getElementById('logoutForm').submit()" class="text-custom">
+                                    Logout
+                                </a>
                             </li>
                             <li>
-                                <a class="" href="charts-flot.html">Flot Charts</a>
+                                <a class="" href="@Url.Action("ResetPassword","Account")">Reset Password</a>
                             </li>
-                            <li>
-                                <a class="" href="charts-sparkline.html">Sparkline Charts</a>
-                            </li>
-                            <li>
-                                <a class="" href="charts-easypiechart.html">PIE charts & Knobs</a>
-                            </li>
-                            <li>
-                                <a class="" href="charts-rickshaw.html">Rickshaw Charts</a>
-                            </li>
+                           
                         </ul>
                     </li>
                    
@@ -591,7 +546,7 @@
 
 
 
-            <div class="project-info">
+            @*<div class="project-info">
 
                 <div class="block1">
                     <div class="data">
@@ -613,7 +568,7 @@
                     </div>
                 </div>
 
-            </div>
+            </div>*@
 
 
 
@@ -627,7 +582,7 @@
                     <div class="page-title">
 
                         <div class="pull-left">
-                            <h1 class="title">Default Layout</h1>
+                            <h1 class="title">Home</h1>
                         </div>
 
                         <div class="pull-right hidden-xs">
@@ -635,12 +590,7 @@
                                 <li>
                                     <a href="index.html"><i class="fa fa-home"></i>Home</a>
                                 </li>
-                                <li>
-                                    <a href="layout-default.html">Layouts</a>
-                                </li>
-                                <li class="active">
-                                    <strong>Default Layout</strong>
-                                </li>
+                                
                             </ol>
                         </div>
 
@@ -651,7 +601,7 @@
                 <div class="col-lg-12">
                     <section class="box ">
                         <header class="panel_header">
-                            <h2 class="title pull-left">Section Box</h2>
+                            <h2 class="title pull-left">Your Feed</h2>
                             <div class="actions panel_actions pull-right">
                                 <i class="box_toggle fa fa-chevron-down"></i>
                                 <i class="box_setting fa fa-cog" data-toggle="modal" href="#section-settings"></i>

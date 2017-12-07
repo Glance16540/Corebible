@@ -1,0 +1,80 @@
+﻿@model Corebible.Models.UpdateInformationViewModel
+@{
+    ViewBag.Title = "UpdateInformation";
+}
+
+<h2>UpdateInformation</h2>
+
+
+@using (Html.BeginForm("UpdateInformation", "Manage", FormMethod.Post, new { @class = "form-horizontal", role = "form", enctype = "Multipart/form-data" }))
+{
+    @Html.AntiForgeryToken()
+    @Html.HiddenFor(model => model.NewProfilePic)
+    <h4>Update Information</h4>
+    <hr />
+    @Html.ValidationSummary("", new { @class = "text-danger" })
+    <div class="form-group">
+        @Html.LabelFor(m => m.NewFirstName, new { @class = "col-md-2 control-label" })
+        <div class="col-md-10">
+            @Html.EditorFor(m => m.NewFirstName, new { @class = "form-control" })
+        </div>
+    </div>
+    <div class="form-group">
+        @Html.LabelFor(m => m.NewLastName, new { @class = "col-md-2 control-label" })
+        <div class="col-md-10">
+            @Html.EditorFor(m => m.NewLastName, new { @class = "form-control" })
+        </div>
+    </div>
+    <div class="form-group">
+        @Html.LabelFor(m => m.NewProfilePic, new { @class = "col-md-2 control-label" })
+        <div class="col-md-10">
+            <input name="image" type="file" id="fileUpload" style="margin-top: 5px" class="form-control" />
+            <div id="fileDisplay" style="max-width: 180px; max-height:200px; padding-top: 10px">
+                @if (Model.NewProfilePic != null)
+                {
+                    <img src="@Model.NewProfilePic" alt="Profile Picture" style="border: 1px solid #8da0aa ; margin-top: 15px; max-width: 180px; max-height:300px; background-color: white" />
+                }
+            </div>
+        </div>
+    </div>
+
+    <div class="form-group">
+        <div class="col-md-offset-2 col-md-10">
+            <input type="submit" value="Update Information" class="btn btn-default" />
+        </div>
+    </div>
+}
+@section Scripts {
+    @Scripts.Render("~/bundles/jqueryval")
+    <script>
+        var fileInput = document.getElementById('fileUpload');
+        var fileDisplayArea = document.getElementById('fileDisplay');
+
+        //File Reader Function for displaying images
+        fileInput.addEventListener('change', function (e) {
+            var file = fileInput.files[0];
+            var imageType = /image.*/;
+
+            if (file.type.match(imageType)) {
+                var reader = new FileReader();
+
+                reader.onload = function (e) {
+                    fileDisplayArea.innerHTML = "";
+
+                    // Create a new image.
+                    var img = new Image();
+                    // Set the img src property using the data URL.
+                    img.src = reader.result;
+                    // Add the image to the page.
+                    fileDisplayArea.appendChild(img);
+                }
+
+                reader.readAsDataURL(file);
+            }
+
+            else {
+                fileDisplayArea.innerHTML = "File not supported!";
+            }
+        });
+    </script>
+}

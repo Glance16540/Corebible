@@ -13,7 +13,7 @@ namespace Corebible.Controllers
 {
     public class GroupsController : Universal
     {
-        private ApplicationDbContext db = new ApplicationDbContext();
+        
 
         // GET: Groups
         public ActionResult Index()

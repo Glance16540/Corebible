@@ -46,6 +46,7 @@ namespace Corebible.Models
         [Display(Name = "Current password")]
         public string OldPassword { get; set; }
 
+      
         [Required]
         [StringLength(100, ErrorMessage = "The {0} must be at least {2} characters long.", MinimumLength = 6)]
         [DataType(DataType.Password)]
@@ -83,4 +84,23 @@ namespace Corebible.Models
         public string SelectedProvider { get; set; }
         public ICollection<System.Web.Mvc.SelectListItem> Providers { get; set; }
     }
+
+    public class UpdateInformationViewModel
+    {
+        //[Display(Name = "Current First Name")]
+        //public string FirstName { get; set; }
+
+        [Display(Name = "Updated First Name")]
+        public string NewFirstName { get; set; }
+
+        //[Display(Name = "Current Last Name")]
+        //public string LastName { get; set; }
+
+        [Display(Name = "Updated Last Name")]
+        public string NewLastName { get; set; }
+
+        [Display(Name = "Updated Profile Pic")]
+        public string NewProfilePic { get; set; }
+    }
+
 }

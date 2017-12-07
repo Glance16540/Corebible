@@ -13,7 +13,7 @@ namespace Corebible.Controllers
 {
     public class PlansController : Universal
     {
-        private ApplicationDbContext db = new ApplicationDbContext();
+      
 
         // GET: Plans
         public ActionResult Index()
