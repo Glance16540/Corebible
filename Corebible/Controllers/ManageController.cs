@@ -11,7 +11,7 @@ using Corebible.Models;
 namespace Corebible.Controllers
 {
     [Authorize]
-    public class ManageController : Controller
+    public class ManageController : Universal
     {
         private ApplicationSignInManager _signInManager;
         private ApplicationUserManager _userManager;

@@ -206,6 +206,7 @@
     <Compile Include="Models\CodeFirst\Plans.cs" />
     <Compile Include="Models\IdentityModels.cs" />
     <Compile Include="Models\ManageViewModels.cs" />
+    <Compile Include="Models\Universal.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Startup.cs" />
   </ItemGroup>
@@ -223,6 +224,8 @@
     <Content Include="Assets\images\apple-touch-icon-144-precomposed.png" />
     <Content Include="Assets\images\apple-touch-icon-57-precomposed.png" />
     <Content Include="Assets\images\apple-touch-icon-72-precomposed.png" />
+    <Content Include="Assets\images\Core App Logo Light edit.png" />
+    <Content Include="Assets\images\Core App Logo Light.png" />
     <Content Include="Assets\images\Core App Logo.png" />
     <Content Include="Assets\images\favicon.png" />
     <Content Include="Assets\images\index.html" />

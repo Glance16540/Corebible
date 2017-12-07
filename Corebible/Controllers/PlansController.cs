@@ -11,7 +11,7 @@ using Corebible.Models.CodeFirst;
 
 namespace Corebible.Controllers
 {
-    public class PlansController : Controller
+    public class PlansController : Universal
     {
         private ApplicationDbContext db = new ApplicationDbContext();
 

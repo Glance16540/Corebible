@@ -11,7 +11,7 @@ using Corebible.Models.CodeFirst;
 
 namespace Corebible.Controllers
 {
-    public class GroupsController : Controller
+    public class GroupsController : Universal
     {
         private ApplicationDbContext db = new ApplicationDbContext();
 
