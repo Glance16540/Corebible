@@ -5,6 +5,7 @@ using Microsoft.AspNet.Identity;
 using Microsoft.AspNet.Identity.EntityFramework;
 using System.Collections.Generic;
 using Corebible.Models.CodeFirst;
+using System.Web.Mvc;
 
 namespace Corebible.Models
 {
@@ -16,6 +17,8 @@ namespace Corebible.Models
         public string LastName { get; set; }
         public string ProfilePic { get; set; }
         public string TimeZone { get; set; }
+        [AllowHtml]
+        public string Bio { get; set; }
 
         public string FullName
         {
@@ -64,6 +67,8 @@ namespace Corebible.Models
         public DbSet<Plans> Plan { get; set; }
         public DbSet<PlanReview> PlanReviews { get; set; }
         public DbSet<Notification>Notifications { get; set; }
+
+      
     }
 
 }

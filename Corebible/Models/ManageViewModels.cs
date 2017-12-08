@@ -3,6 +3,7 @@ using System.ComponentModel.DataAnnotations;
 using Microsoft.AspNet.Identity;
 using Microsoft.Owin.Security;
 
+
 namespace Corebible.Models
 {
     public class IndexViewModel
@@ -93,8 +94,9 @@ namespace Corebible.Models
         [Display(Name = "Updated First Name")]
         public string NewFirstName { get; set; }
 
-        //[Display(Name = "Current Last Name")]
-        //public string LastName { get; set; }
+        [Display(Name = "Bio")]
+        
+        public string Bio { get; set; }
 
         [Display(Name = "Updated Last Name")]
         public string NewLastName { get; set; }

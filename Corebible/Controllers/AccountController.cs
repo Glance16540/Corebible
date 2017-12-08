@@ -139,6 +139,8 @@ namespace Corebible.Controllers
         [AllowAnonymous]
         public ActionResult Register()
         {
+            var timezones = TimeZoneInfo.GetSystemTimeZones();
+            ViewBag.TimeZone = new SelectList(timezones, "Id", "Id");
             return View();
         }
 
@@ -147,7 +149,7 @@ namespace Corebible.Controllers
         [HttpPost]
         [AllowAnonymous]
         [ValidateAntiForgeryToken]
-        public async Task<ActionResult> Register(RegisterViewModel model)
+        public async Task<ActionResult> Register(RegisterViewModel model, string TimeZone)
         {
             if (ModelState.IsValid)
             {
@@ -402,6 +404,25 @@ namespace Corebible.Controllers
         {
             return View();
         }
+
+        //GET: /Account/Profile
+        public ActionResult UserProfile()
+        {
+            var user = db.Users.Find(User.Identity.GetUserId());
+            if (user.Id != null)
+            {
+                var Profile = db.Users.Find(user.Id);
+                return View(Profile);
+            }
+            return RedirectToAction("Index", "Home");
+
+
+        }
+
+
+
+
+
 
         protected override void Dispose(bool disposing)
         {

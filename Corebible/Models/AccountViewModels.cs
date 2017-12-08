@@ -58,10 +58,7 @@ namespace Corebible.Models
         [Display(Name = "Password")]
         public string Password { get; set; }
 
-        [Required]
-        [DataType(DataType.Text)]
-        [Display(Name = "Name")]
-        public string Name { get; set; }
+       
 
         [Display(Name = "Remember me?")]
         public bool RememberMe { get; set; }
@@ -82,6 +79,13 @@ namespace Corebible.Models
         [Required]
         [Display(Name = "Last Name")]
         public string LastName { get; set; }
+
+        [Required]
+        [Display(Name = "Time Zone")]
+        public string TimeZone { get; set; }
+
+        [Display(Name = "Bio")]
+        public string Bio { get; set; } 
 
         [Required]
         [StringLength(100, ErrorMessage = "The {0} must be at least {2} characters long.", MinimumLength = 6)]

@@ -23,6 +23,7 @@ namespace Corebible.Models
                 ViewBag.LastName = user.LastName;
                 ViewBag.FullName = user.FullName;
                 ViewBag.ProfilePic = user.ProfilePic;
+                ViewBag.Bio = user.Bio;
 
 
 

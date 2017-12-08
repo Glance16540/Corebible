@@ -2734,10 +2734,12 @@
     <Content Include="Views\Groups\Edit.cshtml" />
     <Content Include="Views\Groups\Index.cshtml" />
     <Content Include="Views\Manage\UpdateInformation.cshtml" />
+    <Content Include="Views\Account\UserProfile.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
     <Folder Include="Assets\plugins\datatables\extensions\FixedColumns\examples\integration\" />
+    <Folder Include="Assets\ProfilePics\" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="fonts\glyphicons-halflings-regular.woff" />

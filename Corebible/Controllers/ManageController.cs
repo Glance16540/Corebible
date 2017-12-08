@@ -287,6 +287,7 @@ namespace Corebible.Controllers
             model.NewFirstName = user.FirstName;
             model.NewLastName = user.LastName;
             model.NewProfilePic = user.ProfilePic;
+            model.Bio = user.Bio;
 
             return View(model);
         }
@@ -338,9 +339,10 @@ namespace Corebible.Controllers
                 user.FirstName = model.NewFirstName;
                 user.LastName = model.NewLastName;
                 user.ProfilePic = pPic;
+                user.Bio = model.Bio;
                 UserManager.Update(user);
 
-                return RedirectToAction("Index", new { Message = ManageMessageId.UpdateInformationSuccess });
+                return RedirectToAction("UpdateInformation", new { Message = ManageMessageId.UpdateInformationSuccess });
             }
 
             return View(model);

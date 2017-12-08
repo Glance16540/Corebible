@@ -2,17 +2,29 @@
 @{
     ViewBag.Title = "UpdateInformation";
 }
-
-<h2>UpdateInformation</h2>
+<link href="~/Assets/plugins/bootstrap3-wysihtml5/css/bootstrap3-wysihtml5.min.css" rel="stylesheet" />
+<h2>Update Your Information</h2>
 
 
 @using (Html.BeginForm("UpdateInformation", "Manage", FormMethod.Post, new { @class = "form-horizontal", role = "form", enctype = "Multipart/form-data" }))
 {
     @Html.AntiForgeryToken()
     @Html.HiddenFor(model => model.NewProfilePic)
-    <h4>Update Information</h4>
+  
     <hr />
     @Html.ValidationSummary("", new { @class = "text-danger" })
+    <div class="form-group">
+        @Html.LabelFor(m => m.NewProfilePic, new { @class = "col-md-2 control-label" })
+        <div class="col-md-10">
+            <input name="image" type="file" id="fileUpload" style="margin-top: 5px" class="form-control" />
+            <div id="fileDisplay" style="max-width: 180px; max-height:200px; padding-top: 10px">
+                @if (Model.NewProfilePic != null)
+                {
+                    <img src="@Model.NewProfilePic" alt="Profile Picture" style="border: 1px solid #8da0aa ; margin-top: 15px; max-width: 180px; max-height:300px; background-color: white" />
+                }
+            </div>
+        </div>
+    </div>
     <div class="form-group">
         @Html.LabelFor(m => m.NewFirstName, new { @class = "col-md-2 control-label" })
         <div class="col-md-10">
@@ -26,17 +38,13 @@
         </div>
     </div>
     <div class="form-group">
-        @Html.LabelFor(m => m.NewProfilePic, new { @class = "col-md-2 control-label" })
+        @Html.LabelFor(m => m.Bio, new { @class = "col-md-2 control-label" })
         <div class="col-md-10">
-            <input name="image" type="file" id="fileUpload" style="margin-top: 5px" class="form-control" />
-            <div id="fileDisplay" style="max-width: 180px; max-height:200px; padding-top: 10px">
-                @if (Model.NewProfilePic != null)
-                {
-                    <img src="@Model.NewProfilePic" alt="Profile Picture" style="border: 1px solid #8da0aa ; margin-top: 15px; max-width: 180px; max-height:300px; background-color: white" />
-                }
-            </div>
+            <textarea class="bootstrap-wysihtml5-textarea" name="Bio"  placeholder="Please Enter A Bio..." style="width: 100%; height: 250px; font-size: 14px; line-height: 23px;padding:15px;">@Html.Raw(Model.Bio)</textarea>
         </div>
+
     </div>
+
 
     <div class="form-group">
         <div class="col-md-offset-2 col-md-10">
@@ -77,4 +85,6 @@
             }
         });
     </script>
+<script src="~/Assets/plugins/bootstrap3-wysihtml5/js/bootstrap3-wysihtml5.all.min.js"></script>
+
 }

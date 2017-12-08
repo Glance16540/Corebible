@@ -409,7 +409,7 @@
                 <div class="profile-info row">
 
                     <div class="profile-image col-md-4 col-sm-4 col-xs-4">
-                        <a href="ui-profile.html">
+                        <a href="@Url.Action("UserProfile","Account")">
                  
                             <img src="@ViewBag.ProfilePic"  class="img-responsive img-circle">
                         </a>
@@ -511,7 +511,7 @@
                         </a>
                         <ul class="sub-menu">
                             <li>
-                                <a class="" href="charts-morris.html"> Update Information</a>
+                                <a class="" href="@Url.Action("UpdateInformation","Manage")"> Update Information</a>
                             </li>
                             <li>
                                 <a class="" href="charts-chartjs.html">Change Profile Privacy</a>
