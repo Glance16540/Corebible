@@ -354,7 +354,7 @@
                 <ul class="info-menu right-links list-inline list-unstyled">
                     <li class="profile">
                         <a href="#" data-toggle="dropdown" class="toggle">
-                            <img src="data/profile/profile.png" alt="user-image" class="img-circle img-inline">
+                            <img src="@ViewBag.ProfilePic" alt="user-image" class="img-circle img-inline">
                             <span>@ViewBag.FullName <i class="fa fa-angle-down"></i></span>
                         </a>
                         <ul class="dropdown-menu profile animated fadeIn">
@@ -364,7 +364,7 @@
                                 </a>
                             </li>
                             <li>
-                                <a href="#profile">
+                                <a href="@Url.Action("UserProfile","Account")">
                                     <i class="fa fa-user"></i>
                                     Profile
                                 </a>

@@ -24,6 +24,8 @@ namespace Corebible.Models
                 ViewBag.FullName = user.FullName;
                 ViewBag.ProfilePic = user.ProfilePic;
                 ViewBag.Bio = user.Bio;
+                var timezones = TimeZoneInfo.GetSystemTimeZones();
+                ViewBag.TimeZone = new SelectList(timezones, "Id", "Id");
 
 
 

@@ -38,6 +38,12 @@
         </div>
     </div>
     <div class="form-group">
+        @Html.LabelFor(m => m.TimeZone, new { @class = "col-md-2 control-label" })
+        <div class="col-md-10">
+            @Html.DropDownList("TimeZone", null, new { @class = "searchable-select" })
+        </div>
+    </div>
+    <div class="form-group">
         @Html.LabelFor(m => m.Bio, new { @class = "col-md-2 control-label" })
         <div class="col-md-10">
             <textarea class="bootstrap-wysihtml5-textarea" name="Bio"  placeholder="Please Enter A Bio..." style="width: 100%; height: 250px; font-size: 14px; line-height: 23px;padding:15px;">@Html.Raw(Model.Bio)</textarea>

@@ -9,6 +9,7 @@ using Microsoft.AspNet.Identity;
 using Microsoft.AspNet.Identity.Owin;
 using Microsoft.Owin.Security;
 using Corebible.Models;
+using System.IO;
 
 namespace Corebible.Controllers
 {
@@ -140,7 +141,9 @@ namespace Corebible.Controllers
         public ActionResult Register()
         {
             var timezones = TimeZoneInfo.GetSystemTimeZones();
-            ViewBag.TimeZone = new SelectList(timezones, "Id", "Id");
+            ViewBag.TimeZone = new SelectList(timezones, "Id", "Id");
+
+
             return View();
         }
 
@@ -149,16 +152,49 @@ namespace Corebible.Controllers
         [HttpPost]
         [AllowAnonymous]
         [ValidateAntiForgeryToken]
-        public async Task<ActionResult> Register(RegisterViewModel model, string TimeZone)
+        public async Task<ActionResult> Register(RegisterViewModel model, HttpPostedFileBase image, string TimeZone)
         {
+            var timeZones = TimeZoneInfo.GetSystemTimeZones();
+            ViewBag.TimeZone = new SelectList(timeZones, "Id", "Id");
+            var pPic = "/Assets/images/Profile_avatar_placeholder_large.png";
+
+            if (image != null && image.ContentLength > 0)
+            {
+                var ext = Path.GetExtension(image.FileName).ToLower();
+                if (ext != ".png" && ext != ".jpg" && ext != ".jpeg" && ext != ".gif" && ext != ".bmp")
+                    ModelState.AddModelError("image", "Invalid Format.");
+            }
+
             if (ModelState.IsValid)
             {
-                var user = new ApplicationUser { UserName = model.Email, Email = model.Email };
+               
+                if (image != null)
+                {
+                    //Counter
+                    var num = 0;
+                    //Gets Filename without the extension
+                    var fileName = Path.GetFileNameWithoutExtension(image.FileName);
+                    pPic = Path.Combine("/Assets/ProfilePics", fileName + Path.GetExtension(image.FileName));
+                    //Checks if pPic matches any of the current attachments, 
+                    //if so it will loop and add a (number) to the end of the filename
+                    while (db.Users.Any(u => u.ProfilePic == pPic))
+                    {
+                        //Sets "filename" back to the default value
+                        fileName = Path.GetFileNameWithoutExtension(image.FileName);
+                        //Add's parentheses after the name with a number ex. filename(4)
+                        fileName = string.Format(fileName + "(" + ++num + ")");
+                        //Makes sure pPic gets updated with the new filename so it could check
+                        pPic = Path.Combine("/Assets/ProfilePics", fileName + Path.GetExtension(image.FileName));
+                    }
+                    image.SaveAs(Path.Combine(Server.MapPath("~/Assets/ProfilePics"), fileName + Path.GetExtension(image.FileName)));
+                }
+
+                var user = new ApplicationUser { UserName = model.Email, Email = model.Email, FirstName = model.FirstName, LastName = model.LastName, TimeZone = model.TimeZone, ProfilePic = pPic };
                 var result = await UserManager.CreateAsync(user, model.Password);
                 if (result.Succeeded)
                 {
-                    await SignInManager.SignInAsync(user, isPersistent:false, rememberBrowser:false);
-                    
+                    await SignInManager.SignInAsync(user, isPersistent: false, rememberBrowser: false);
+
                     // For more information on how to enable account confirmation and password reset please visit https://go.microsoft.com/fwlink/?LinkID=320771
                     // Send an email with this link
                     // string code = await UserManager.GenerateEmailConfirmationTokenAsync(user.Id);
@@ -171,9 +207,9 @@ namespace Corebible.Controllers
             }
 
             // If we got this far, something failed, redisplay form
+
             return View(model);
         }
-
         //
         // GET: /Account/ConfirmEmail
         [AllowAnonymous]
@@ -408,9 +444,12 @@ namespace Corebible.Controllers
         //GET: /Account/Profile
         public ActionResult UserProfile()
         {
+
             var user = db.Users.Find(User.Identity.GetUserId());
             if (user.Id != null)
             {
+                var timezones = TimeZoneInfo.GetSystemTimeZones();
+                ViewBag.TimeZone = new SelectList(timezones, "Id", "Id");
                 var Profile = db.Users.Find(user.Id);
                 return View(Profile);
             }

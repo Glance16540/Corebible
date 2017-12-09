@@ -282,6 +282,9 @@ namespace Corebible.Controllers
         //GET: /Manage/UpdateInformation
         public ActionResult UpdateInformation()
         {
+            var timezones = TimeZoneInfo.GetSystemTimeZones();
+            ViewBag.TimeZone = new SelectList(timezones, "Id", "Id");
+
             var user = UserManager.FindById(User.Identity.GetUserId());
             UpdateInformationViewModel model = new UpdateInformationViewModel();
             model.NewFirstName = user.FirstName;
@@ -297,6 +300,9 @@ namespace Corebible.Controllers
         [ValidateAntiForgeryToken]
         public ActionResult UpdateInformation(UpdateInformationViewModel model, HttpPostedFileBase image)
         {
+            var timezones = TimeZoneInfo.GetSystemTimeZones();
+            ViewBag.TimeZone = new SelectList(timezones, "Id", "Id");
+
             var pPic = model.NewProfilePic;
 
             if (image != null && image.ContentLength > 0)
@@ -342,7 +348,7 @@ namespace Corebible.Controllers
                 user.Bio = model.Bio;
                 UserManager.Update(user);
 
-                return RedirectToAction("UpdateInformation", new { Message = ManageMessageId.UpdateInformationSuccess });
+                return RedirectToAction("UserProfile","Account", new { Message = ManageMessageId.UpdateInformationSuccess });
             }
 
             return View(model);

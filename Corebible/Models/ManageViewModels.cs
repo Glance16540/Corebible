@@ -91,18 +91,22 @@ namespace Corebible.Models
         //[Display(Name = "Current First Name")]
         //public string FirstName { get; set; }
 
-        [Display(Name = "Updated First Name")]
+        [Display(Name = "First Name")]
         public string NewFirstName { get; set; }
 
         [Display(Name = "Bio")]
-        
+        [System.Web.Mvc.AllowHtml]
         public string Bio { get; set; }
 
-        [Display(Name = "Updated Last Name")]
+        [Display(Name = "Last Name")]
         public string NewLastName { get; set; }
 
-        [Display(Name = "Updated Profile Pic")]
+        [Display(Name = "Profile Picture")]
         public string NewProfilePic { get; set; }
+
+        [Display(Name = "Time Zone")]
+        public string TimeZone { get; set; }
+
     }
 
 }
