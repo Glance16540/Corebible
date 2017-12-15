@@ -35,6 +35,7 @@
     <DefineConstants>DEBUG;TRACE</DefineConstants>
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
+    <FilesToIncludeForPublish>AllFilesInTheProject</FilesToIncludeForPublish>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
     <DebugSymbols>true</DebugSymbols>
@@ -204,6 +205,7 @@
     <Compile Include="Models\CodeFirst\Notification.cs" />
     <Compile Include="Models\CodeFirst\PlanReview.cs" />
     <Compile Include="Models\CodeFirst\Plans.cs" />
+    <Compile Include="Models\EmailModel.cs" />
     <Compile Include="Models\Helpers\CustomHTMLHelpers.cs" />
     <Compile Include="Models\IdentityModels.cs" />
     <Compile Include="Models\ManageViewModels.cs" />
@@ -212,6 +214,7 @@
     <Compile Include="Startup.cs" />
   </ItemGroup>
   <ItemGroup>
+    <Content Include="Assets\css\animate.css" />
     <Content Include="Assets\css\animate.min.css" />
     <Content Include="Assets\css\index.html" />
     <Content Include="Assets\css\responsive.css" />
@@ -2468,6 +2471,19 @@
     <Content Include="Assets\mus-song-view.html" />
     <Content Include="Assets\mus-upload.html" />
     <Content Include="Assets\music.html" />
+    <Content Include="Assets\ProfilePics\3.jpg" />
+    <Content Include="Assets\ProfilePics\avatar-4.jpg" />
+    <Content Include="Assets\ProfilePics\avatar-7.jpg" />
+    <Content Include="Assets\ProfilePics\avatar-8%281%29.jpg" />
+    <Content Include="Assets\ProfilePics\avatar-8.jpg" />
+    <Content Include="Assets\ProfilePics\Core App Logo.png" />
+    <Content Include="Assets\ProfilePics\IMG_Garratt_Lance%281%29.jpg" />
+    <Content Include="Assets\ProfilePics\IMG_Garratt_Lance.jpg" />
+    <Content Include="Assets\ProfilePics\jonna-fransa-227556%281%29.jpg" />
+    <Content Include="Assets\ProfilePics\jonna-fransa-227556.jpg" />
+    <Content Include="Assets\ProfilePics\m5.jpg" />
+    <Content Include="Assets\ProfilePics\will-van-wingerden-87463%281%29.jpg" />
+    <Content Include="Assets\ProfilePics\will-van-wingerden-87463.jpg" />
     <Content Include="Assets\soc-account-settings.html" />
     <Content Include="Assets\soc-activity.html" />
     <Content Include="Assets\soc-friends.html" />
@@ -2680,6 +2696,7 @@
     <Content Include="Assets\data\mus-song-files\song-2.ogg" />
     <Content Include="Assets\data\mus-song-files\song-3.ogg" />
     <Content Include="Assets\data\names.json" />
+    <None Include="Properties\PublishProfiles\Corebible - Web Deploy.pubxml" />
     <None Include="Scripts\jquery-1.10.2.intellisense.js" />
     <Content Include="Scripts\jquery-1.10.2.js" />
     <Content Include="Scripts\jquery-1.10.2.min.js" />
@@ -2739,11 +2756,11 @@
     <Content Include="Views\Groups\Index.cshtml" />
     <Content Include="Views\Manage\UpdateInformation.cshtml" />
     <Content Include="Views\Account\UserProfile.cshtml" />
+    <Content Include="Views\Manage\FAQ.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
     <Folder Include="Assets\plugins\datatables\extensions\FixedColumns\examples\integration\" />
-    <Folder Include="Assets\ProfilePics\" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="fonts\glyphicons-halflings-regular.woff" />

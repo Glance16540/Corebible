@@ -10,6 +10,7 @@ using Microsoft.AspNet.Identity.Owin;
 using Microsoft.Owin.Security;
 using Corebible.Models;
 using System.IO;
+using System.Data.Entity;
 
 namespace Corebible.Controllers
 {
@@ -167,29 +168,34 @@ namespace Corebible.Controllers
 
             if (ModelState.IsValid)
             {
-               
+
                 if (image != null)
                 {
                     //Counter
                     var num = 0;
                     //Gets Filename without the extension
                     var fileName = Path.GetFileNameWithoutExtension(image.FileName);
-                    pPic = Path.Combine("/Assets/ProfilePics", fileName + Path.GetExtension(image.FileName));
+                    pPic = Path.Combine("/Assets/ProfilePics/", fileName + Path.GetExtension(image.FileName));
                     //Checks if pPic matches any of the current attachments, 
                     //if so it will loop and add a (number) to the end of the filename
-                    while (db.Users.Any(u => u.ProfilePic == pPic))
+                    while (db.Users.AsNoTracking().Any(u => u.ProfilePic == pPic))
                     {
                         //Sets "filename" back to the default value
                         fileName = Path.GetFileNameWithoutExtension(image.FileName);
                         //Add's parentheses after the name with a number ex. filename(4)
                         fileName = string.Format(fileName + "(" + ++num + ")");
                         //Makes sure pPic gets updated with the new filename so it could check
-                        pPic = Path.Combine("/Assets/ProfilePics", fileName + Path.GetExtension(image.FileName));
+                        pPic = Path.Combine("/Assets/ProfilePics/", fileName + Path.GetExtension(image.FileName));
                     }
-                    image.SaveAs(Path.Combine(Server.MapPath("~/Assets/ProfilePics"), fileName + Path.GetExtension(image.FileName)));
+                    image.SaveAs(Path.Combine(Server.MapPath("~/Assets/ProfilePics/"), fileName + Path.GetExtension(image.FileName)));
                 }
-
-                var user = new ApplicationUser { UserName = model.Email, Email = model.Email, FirstName = model.FirstName, LastName = model.LastName, TimeZone = model.TimeZone, ProfilePic = pPic };
+                var defaultProfilePic = "~/Assets/images/Profile_avatar_placeholder_large.png";
+                if (String.IsNullOrWhiteSpace(pPic))
+                {
+                    pPic = defaultProfilePic;
+                }
+                model.ProfilePic = pPic;
+                var user = new ApplicationUser { UserName = model.Email, Email = model.Email, FirstName = model.FirstName, LastName = model.LastName, TimeZone = model.TimeZone, ProfilePic = model.ProfilePic, Bio = model.Bio };
                 var result = await UserManager.CreateAsync(user, model.Password);
                 if (result.Succeeded)
                 {
@@ -241,7 +247,7 @@ namespace Corebible.Controllers
             if (ModelState.IsValid)
             {
                 var user = await UserManager.FindByNameAsync(model.Email);
-                if (user == null || !(await UserManager.IsEmailConfirmedAsync(user.Id)))
+                if (user == null)
                 {
                     // Don't reveal that the user does not exist or is not confirmed
                     return View("ForgotPasswordConfirmation");
@@ -249,10 +255,10 @@ namespace Corebible.Controllers
 
                 // For more information on how to enable account confirmation and password reset please visit https://go.microsoft.com/fwlink/?LinkID=320771
                 // Send an email with this link
-                // string code = await UserManager.GeneratePasswordResetTokenAsync(user.Id);
-                // var callbackUrl = Url.Action("ResetPassword", "Account", new { userId = user.Id, code = code }, protocol: Request.Url.Scheme);		
-                // await UserManager.SendEmailAsync(user.Id, "Reset Password", "Please reset your password by clicking <a href=\"" + callbackUrl + "\">here</a>");
-                // return RedirectToAction("ForgotPasswordConfirmation", "Account");
+                string code = await UserManager.GeneratePasswordResetTokenAsync(user.Id);
+                var callbackUrl = Url.Action("ResetPassword", "Account", new { userId = user.Id, code = code }, protocol: Request.Url.Scheme);
+                await UserManager.SendEmailAsync(user.Id, "Reset Password", "Please reset your password by clicking <a href=\"" + callbackUrl + "\">here</a>");
+                return RedirectToAction("ForgotPasswordConfirmation", "Account");
             }
 
             // If we got this far, something failed, redisplay form

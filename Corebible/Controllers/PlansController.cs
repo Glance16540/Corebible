@@ -11,10 +11,11 @@ using Corebible.Models.CodeFirst;
 
 namespace Corebible.Controllers
 {
+    [Authorize(Roles = "Admin") ]
     public class PlansController : Universal
     {
       
-
+   
         // GET: Plans
         public ActionResult Index()
         {

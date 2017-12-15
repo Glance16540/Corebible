@@ -6,11 +6,16 @@ using Microsoft.Owin.Security.Cookies;
 using Microsoft.Owin.Security.Google;
 using Owin;
 using Corebible.Models;
+using System.Net.Mail;
+using System.Web.Configuration;
+using System.Threading.Tasks;
+using System.Net;
 
 namespace Corebible
 {
     public partial class Startup
     {
+      
         // For more information on configuring authentication, please visit https://go.microsoft.com/fwlink/?LinkId=301864
         public void ConfigureAuth(IAppBuilder app)
         {

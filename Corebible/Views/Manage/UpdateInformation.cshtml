@@ -4,7 +4,7 @@
 }
 <link href="~/Assets/plugins/bootstrap3-wysihtml5/css/bootstrap3-wysihtml5.min.css" rel="stylesheet" />
 <h2>Update Your Information</h2>
-
+<p>*Please Note* If your picture is to high of a resolution it may display strangely. </p>
 
 @using (Html.BeginForm("UpdateInformation", "Manage", FormMethod.Post, new { @class = "form-horizontal", role = "form", enctype = "Multipart/form-data" }))
 {
@@ -16,11 +16,12 @@
     <div class="form-group">
         @Html.LabelFor(m => m.NewProfilePic, new { @class = "col-md-2 control-label" })
         <div class="col-md-10">
+          
             <input name="image" type="file" id="fileUpload" style="margin-top: 5px" class="form-control" />
             <div id="fileDisplay" style="max-width: 180px; max-height:200px; padding-top: 10px">
                 @if (Model.NewProfilePic != null)
                 {
-                    <img src="@Model.NewProfilePic" alt="Profile Picture" style="border: 1px solid #8da0aa ; margin-top: 15px; max-width: 180px; max-height:300px; background-color: white" />
+                    <img src="@Model.NewProfilePic" alt="Profile Picture" class="img-circle img-responsive" style="border: 1px solid #8da0aa ; margin-top: 15px; max-width: 180px; max-height:200px; background-color: white" />
                 }
             </div>
         </div>
@@ -28,6 +29,7 @@
     <div class="form-group">
         @Html.LabelFor(m => m.NewFirstName, new { @class = "col-md-2 control-label" })
         <div class="col-md-10">
+         
             @Html.EditorFor(m => m.NewFirstName, new { @class = "form-control" })
         </div>
     </div>
@@ -40,7 +42,7 @@
     <div class="form-group">
         @Html.LabelFor(m => m.TimeZone, new { @class = "col-md-2 control-label" })
         <div class="col-md-10">
-            @Html.DropDownList("TimeZone", null, new { @class = "searchable-select" })
+            @Html.DropDownList("TimeZone",null, new { @class = "searchable-select" })
         </div>
     </div>
     <div class="form-group">

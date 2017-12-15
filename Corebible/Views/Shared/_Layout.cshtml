@@ -5,7 +5,8 @@
 <head>
     <meta http-equiv="content-type" content="text/html;charset=UTF-8" />
     <meta charset="utf-8" />
-    <title>CoreBible</title>
+    <title>
+ CoreBible</title>
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
     <meta content="" name="description" />
     <meta content="" name="author" />
@@ -39,10 +40,10 @@
     <div class='page-topbar '>
         <div class='logo-area'>
 
-
+            
             
             <img src="~/Assets/images/Core App Logo Light edit.png"   style="width:50px;height:50px;" />
-           
+  
         </div>
         <div class='quick-area'>
             <div class='pull-left'>
@@ -52,7 +53,7 @@
                             <i class="fa fa-bars"></i>
                         </a>
                     </li>
-                    <li class="message-toggle-wrapper">
+                    @*<li class="message-toggle-wrapper">
                         <a href="#" data-toggle="dropdown" class="toggle">
                             <i class="fa fa-envelope"></i>
                             <span class="badge badge-primary">7</span>
@@ -336,7 +337,7 @@
                                 </a>
                             </li>
                         </ul>
-                    </li>
+                    </li>*@
                     <li class="hidden-sm hidden-xs searchform">
                         <div class="input-group">
                             <span class="input-group-addon input-focus">
@@ -358,19 +359,15 @@
                             <span>@ViewBag.FullName <i class="fa fa-angle-down"></i></span>
                         </a>
                         <ul class="dropdown-menu profile animated fadeIn">
+                           
                             <li>
-                                <a href="#settings">
-                                    <i class="fa fa-wrench"></i>
-                                </a>
-                            </li>
-                            <li>
-                                <a href="@Url.Action("UserProfile","Account")">
+                                <a href="@Url.Action("UserProfile", "Account")">
                                     <i class="fa fa-user"></i>
                                     Profile
                                 </a>
                             </li>
                             <li>
-                                <a href="#help">
+                                <a href="@Url.Action("FAQ","Manage")">
                                     <i class="fa fa-info"></i>
                                     Help
                                 </a>
@@ -383,13 +380,13 @@
                             </li>
                         </ul>
                     </li>
-                    <li class="chat-toggle-wrapper">
+                    @*<li class="chat-toggle-wrapper">
                         <a href="#" data-toggle="chatbar" class="toggle_chat">
                             <i class="fa fa-comments"></i>
-                            <span class="badge badge-warning">9</span>
+                            <span class="badge badge-warning"></span>
                             <i class="fa fa-times"></i>
                         </a>
-                    </li>
+                    </li>*@
                 </ul>
             </div>
         </div>
@@ -418,7 +415,7 @@
                     <div class="profile-details col-md-8 col-sm-8 col-xs-8">
 
                         <h3>
-                            <a href="ui-profile.html">@ViewBag.FullName</a>
+                            <a href="@Url.Action("UserProfile","Account")">@ViewBag.FullName</a>
 
                             <!-- Available statuses: online, idle, busy, away and offline -->
                             
@@ -443,8 +440,14 @@
                             <span class="title">Home</span>
                         </a>
                     </li>
-                   
                     <li class="">
+                        <a href="@Url.Action("Contact","Home")">
+                            <i class="fa fa-user"></i>
+                            <span class="title">Contact</span>
+                        </a>
+                    </li>
+
+                    @*<li class="">
                         <a href="javascript:;">
                             <i class="fa fa-book"></i>
                             <span class="title">Read The Bible</span>
@@ -460,7 +463,7 @@
                         </a>
                         <ul class="sub-menu">
                             <li>
-                                <a class="" href="@Url.Action("Index","Groups")">Your Groups</a>
+                                <a class="" href="@Url.Action("Index","Groups")">My Groups</a>
                             </li>
                             <li>
                                 <a class="" href="@Url.Action("Create","Groups")">Create A Group</a>
@@ -473,23 +476,44 @@
                     </li>
                     <li class="">
                         <a href="javascript:;">
-                            <i class="fa fa-sliders"></i>
+                            <i class="fa fa-folder"></i>
+                            <span class="title">Plans</span>
+                            <span class="arrow "></span>
+                        </a>
+                        <ul class="sub-menu">
+                            <li>
+                                <a class="" href="@Url.Action("Index","Plans")">My Subscribed Plans</a>
+                            </li>
+                            <li>
+                                <a class="" href="@Url.Action("Create","Plans")">Create A Plan</a>
+                            </li>
+                            <li>
+                                <a class="" href="@Url.Action("FindGroups","Plans")">Find Available Plans</a>
+                            </li>
+
+                        </ul>
+                    </li>
+                    <li class="">
+                        <a href="javascript:;">
+                            <i class="fa fa-smile-o"></i>
                             <span class="title">Friends</span>
                             <span class="arrow "></span>
                         </a>
                         <ul class="sub-menu">
                             <li>
-                                <a class="" href="@Url.Action("Index","Friends")">Your Friends</a>
+                                <a class="" href="@Url.Action("Index","Friends")">My Friends</a>
                             </li>
                             <li>
-                                <a class="" href="#">Find Friends</a>
+                                <a class="" href="@Url.Action("FindFriends","Friends")">Find Friends</a>
                             </li>
-                           
+                            <li>
+                                <a class="" href="@Url.Action("Invite","Friends")">Invite Friends</a>
+                            </li>
                         </ul>
                     </li>
                     <li class="">
                         <a href="javascript:;">
-                            <i class="fa fa-gift"></i>
+                            <i class="fa fa-support"></i>
                             <span class="title">Messages</span>
                             <span class="arrow "></span>
                         </a>
@@ -502,10 +526,10 @@
                             </li>
                            
                         </ul>
-                    </li>
+                    </li>*@
                     <li class="">
                         <a href="javascript:;">
-                            <i class="fa fa-bar-chart"></i>
+                            <i class="fa fa-cogs"></i>
                             <span class="title">Settings</span>
                             <span class="arrow "></span>
                         </a>
@@ -513,9 +537,9 @@
                             <li>
                                 <a class="" href="@Url.Action("UpdateInformation","Manage")"> Update Information</a>
                             </li>
-                            <li>
+                            @*<li>
                                 <a class="" href="charts-chartjs.html">Change Profile Privacy</a>
-                            </li>
+                            </li>*@
                             @using (Html.BeginForm("LogOff", "Account", FormMethod.Post, new { id = "logoutForm", @class = "navbar-right" }))
                             {
                                 @Html.AntiForgeryToken()
@@ -526,7 +550,7 @@
                                 </a>
                             </li>
                             <li>
-                                <a class="" href="@Url.Action("ResetPassword","Account")">Reset Password</a>
+                                <a class="" href="@Url.Action("ChangePassword","Manage")">Change Password</a>
                             </li>
                            
                         </ul>
@@ -578,30 +602,30 @@
         <section id="main-content" class=" ">
             <section class="wrapper main-wrapper" style=''>
 
-                <div class='col-lg-12 col-md-12 col-sm-12 col-xs-12'>
+                @*<div class='col-lg-12 col-md-12 col-sm-12 col-xs-12'>
                     <div class="page-title">
 
-                        <div class="pull-left">
+                        @*<div class="pull-left">
                             <h1 class="title">Home</h1>
-                        </div>
+                        </div>*@
 
-                        <div class="pull-right hidden-xs">
+                        @*<div class="pull-right hidden-xs">
                             <ol class="breadcrumb">
                                 <li>
-                                    <a href="index.html"><i class="fa fa-home"></i>Home</a>
+                                    <a href="@Url.Action("Index","Home")"><i class="fa fa-home"></i>Home</a>
                                 </li>
                                 
                             </ol>
                         </div>
 
                     </div>
-                </div>
+                </div>*@
                 <div class="clearfix"></div>
 
                 <div class="col-lg-12">
                     <section class="box ">
                         <header class="panel_header">
-                            <h2 class="title pull-left">Your Feed</h2>
+                            <h2 class="title pull-left">Feed</h2>
                             <div class="actions panel_actions pull-right">
                                 <i class="box_toggle fa fa-chevron-down"></i>
                                 <i class="box_setting fa fa-cog" data-toggle="modal" href="#section-settings"></i>
@@ -847,16 +871,16 @@
             <div class="modal-content">
                 <div class="modal-header">
                     <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
-                    <h4 class="modal-title">Section Settings</h4>
+                    <h4 class="modal-title">Hello @ViewBag.FirstName</h4>
                 </div>
                 <div class="modal-body">
-
-                    Body goes here...
+                    Welcome!
+                    Remember that all you can do for now is create your profile. To update your info go <a href="@Url.Action("UpdateInformation","Manage")" class="btn btn-primary">here.</a>
 
                 </div>
                 <div class="modal-footer">
                     <button data-dismiss="modal" class="btn btn-default" type="button">Close</button>
-                    <button class="btn btn-success" type="button">Save changes</button>
+                
                 </div>
             </div>
         </div>

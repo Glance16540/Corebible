@@ -4172,17 +4172,18 @@ a.cke_button_off:hover, .cke_hc a.cke_button_off:focus, .cke_hc a.cke_button_off
 
 
 .loginpage h1 a {
-    height: 92px;
+    height: 200px;
     margin: 0px auto 0px auto;
-    padding: 0;
+    padding:;
     text-decoration: none;
-    -moz-background-size: 345px 92px;
-    -o-background-size: 345px 92px;
-    background-size: 345px 92px;
+    -moz-background-size: 200px 92px;
+    -o-background-size: 200px 92px;
+    background-size: 200px 200px;
     background-color: transparent;
     min-height: 92px;
     width: auto;
-    background-image: url("../images/login-logo.png");
+    background-image: url('../images/Core App Logo Light.png');
+  
     background-position: center top;
     background-repeat: no-repeat;
     text-indent: -9999px;
@@ -4297,11 +4298,14 @@ a.cke_button_off:hover, .cke_hc a.cke_button_off:focus, .cke_hc a.cke_button_off
     margin: 5px 5px 5px 5px;
 }
 body.login_page {
-    background-color: rgba(116, 77, 144, 1.0)
-    /*#744d90*/
-    
-    ;
-    background-image: url('../images/login-bg.png');
+    background: rgba(143,224,224,1);
+    background: -moz-linear-gradient(left, rgba(143,224,224,1) 0%, rgba(117,189,209,1) 41%, rgba(66,123,204,1) 100%);
+    background: -webkit-gradient(left top, right top, color-stop(0%, rgba(143,224,224,1)), color-stop(41%, rgba(117,189,209,1)), color-stop(100%, rgba(66,123,204,1)));
+    background: -webkit-linear-gradient(left, rgba(143,224,224,1) 0%, rgba(117,189,209,1) 41%, rgba(66,123,204,1) 100%);
+    background: -o-linear-gradient(left, rgba(143,224,224,1) 0%, rgba(117,189,209,1) 41%, rgba(66,123,204,1) 100%);
+    background: -ms-linear-gradient(left, rgba(143,224,224,1) 0%, rgba(117,189,209,1) 41%, rgba(66,123,204,1) 100%);
+    background: linear-gradient(to right, rgba(143,224,224,1) 0%, rgba(117,189,209,1) 41%, rgba(66,123,204,1) 100%);
+
     background-attachment: fixed;
     height: 100%;
     max-height: 100%;
@@ -4313,7 +4317,7 @@ body.login_page {
     height: 100%;
     overflow: auto;
     overflow-x: hidden;
-    padding-top: 100px;
+
 }
 #register {
     padding-bottom: 100px;
@@ -7679,7 +7683,7 @@ border-left: 3px solid transparent;
         }
 
         .page-topbar .logo-area {
-            background-image: url('../images/logo-folded.png');
+       
             background-repeat: no-repeat;
             background-position: left top;
         }

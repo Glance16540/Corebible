@@ -76,6 +76,7 @@ namespace Corebible.Controllers
                 BrowserRemembered = await AuthenticationManager.TwoFactorBrowserRememberedAsync(userId)
             };
             return View(model);
+            
         }
 
         //
@@ -102,6 +103,12 @@ namespace Corebible.Controllers
             return RedirectToAction("ManageLogins", new { Message = message });
         }
 
+        //GET: /Manage/FAQ
+        public ActionResult FAQ()
+        {
+
+            return View();
+        }
         //
         // GET: /Manage/AddPhoneNumber
         public ActionResult AddPhoneNumber()
@@ -291,6 +298,7 @@ namespace Corebible.Controllers
             model.NewLastName = user.LastName;
             model.NewProfilePic = user.ProfilePic;
             model.Bio = user.Bio;
+            model.TimeZone = user.TimeZone;
 
             return View(model);
         }
@@ -298,7 +306,7 @@ namespace Corebible.Controllers
         //POST: /Manage/UpdateInformation
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult UpdateInformation(UpdateInformationViewModel model, HttpPostedFileBase image)
+        public ActionResult UpdateInformation(UpdateInformationViewModel model, HttpPostedFileBase image, string TimeZone)
         {
             var timezones = TimeZoneInfo.GetSystemTimeZones();
             ViewBag.TimeZone = new SelectList(timezones, "Id", "Id");
@@ -346,6 +354,7 @@ namespace Corebible.Controllers
                 user.LastName = model.NewLastName;
                 user.ProfilePic = pPic;
                 user.Bio = model.Bio;
+                user.TimeZone = model.TimeZone;
                 UserManager.Update(user);
 
                 return RedirectToAction("UserProfile","Account", new { Message = ManageMessageId.UpdateInformationSuccess });
