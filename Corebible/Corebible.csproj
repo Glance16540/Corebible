@@ -200,12 +200,15 @@
     </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\AccountViewModels.cs" />
+    <Compile Include="Models\CodeFirst\Friends.cs" />
     <Compile Include="Models\CodeFirst\Groupcomments.cs" />
     <Compile Include="Models\CodeFirst\Groups.cs" />
     <Compile Include="Models\CodeFirst\Notification.cs" />
     <Compile Include="Models\CodeFirst\PlanReview.cs" />
     <Compile Include="Models\CodeFirst\Plans.cs" />
     <Compile Include="Models\EmailModel.cs" />
+    <Compile Include="Models\CodeFirst\FriendRequest.cs" />
+    <Compile Include="Models\CodeFirst\FriendStatus.cs" />
     <Compile Include="Models\Helpers\CustomHTMLHelpers.cs" />
     <Compile Include="Models\IdentityModels.cs" />
     <Compile Include="Models\ManageViewModels.cs" />

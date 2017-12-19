@@ -64,6 +64,34 @@ namespace Corebible.Migrations
 
                 var userId1 = userManager.FindByEmail("drmsmayhem7@gmail.com").Id;
                 userManager.AddToRole(userId, "Admin");
+
+                //if (!context.fri.Any(p => p.Name == "Completed"))
+                //{
+                //    var status = new TicketStatus();
+                //    status.Name = "Completed";
+                //    context.TicketStatuses.Add(status);
+                //}
+                //if (!context.TicketStatuses.Any(p => p.Name == "In Progress"))
+                //{
+                //    var status = new TicketStatus();
+                //    status.Name = "In Progress";
+                //    context.TicketStatuses.Add(status);
+                //}
+                //if (!context.TicketStatuses.Any(p => p.Name == "Assigned"))
+                //{
+                //    var status = new TicketStatus();
+                //    status.Name = "Assigned";
+                //    context.TicketStatuses.Add(status);
+                //}
+                //if (!context.TicketStatuses.Any(p => p.Name == "Unassigned"))
+                //{
+                //    var status = new TicketStatus();
+                //    status.Name = "Unassigned";
+                //    context.TicketStatuses.Add(status);
+                //}
+
+
+
             }
         }
     }
