@@ -10,6 +10,5 @@ namespace Corebible.Models.CodeFirst
         public int Id { get; set; }
 
         //public ApplicationUser user;
-
     }
 }
