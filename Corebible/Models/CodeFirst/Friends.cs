@@ -8,7 +8,6 @@ namespace Corebible.Models.CodeFirst
     public class Friends
     {
         public int Id { get; set; }
-        public
 
         //public ApplicationUser user;
 
