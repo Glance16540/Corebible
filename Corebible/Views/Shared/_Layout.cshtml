@@ -552,15 +552,6 @@
                             @*<li>
                                     <a class="" href="charts-chartjs.html">Change Profile Privacy</a>
                                 </li>*@
-                            @using (Html.BeginForm("LogOff", "Account", FormMethod.Post, new { id = "logoutForm", @class = "navbar-right" }))
-                            {
-                                @Html.AntiForgeryToken()
-                            }
-                            <li>
-                                <a href="javascript:document.getElementById('logoutForm').submit()" class="text-custom">
-                                    Logout
-                                </a>
-                            </li>
                             <li>
                                 <a class="" href="@Url.Action("ChangePassword","Manage")">Change Password</a>
                             </li>
