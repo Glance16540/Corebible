@@ -866,8 +866,8 @@ a:hover, a:focus {
     display: inline-block;
 }
 .profile-info .profile-image img {
-    height: 65px;
-    width: 65px;
+    height: 80px;
+    width: 90px;
     float: right;
     top: 5px;
     left: 5px;
