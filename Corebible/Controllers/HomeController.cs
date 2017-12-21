@@ -26,7 +26,10 @@ namespace Corebible.Controllers
 
             return View();
         }
-
+        public ActionResult Chat()
+        {
+            return View();
+        }
         public ActionResult Contact()
         {
             return View();
