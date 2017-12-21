@@ -441,11 +441,7 @@
                 </div>
                 <!-- USER INFO - END -->
 
-
-
                 <ul class='wraplist'>
-
-
                     <li class="">
                         <a href="@Url.Action("Index","Home")">
                             <i class="fa fa-home"></i>
@@ -552,31 +548,13 @@
                             @*<li>
                                     <a class="" href="charts-chartjs.html">Change Profile Privacy</a>
                                 </li>*@
-                            @using (Html.BeginForm("LogOff", "Account", FormMethod.Post, new { id = "logoutForm", @class = "navbar-right" }))
-                            {
-                                @Html.AntiForgeryToken()
-                            }
-                            <li>
-                                <a href="javascript:document.getElementById('logoutForm').submit()" class="text-custom">
-                                    Logout
-                                </a>
-                            </li>
                             <li>
                                 <a class="" href="@Url.Action("ChangePassword","Manage")">Change Password</a>
                             </li>
 
                         </ul>
                     </li>
-
-
-
-
-
-
-
-
                 </ul>
-
             </div>
             <!-- MAIN MENU - END -->
             @*<div class="project-info">
@@ -602,9 +580,6 @@
                     </div>
 
                 </div>*@
-
-
-
         </div>
         <!--  SIDEBAR - END -->
         <!-- START CONTENT -->
@@ -650,7 +625,6 @@
                         </div>
                     </section>
                 </div>
-
 
             </section>
         </section>
@@ -725,7 +699,6 @@
                     </li>
 
                 </ul>
-
 
                 <h4 class="group-head">More Contacts</h4>
                 <ul class="contact-list">
@@ -844,9 +817,7 @@
 
         </div>
 
-
         <div class="chatapi-windows ">
-
 
         </div>
     </div>
