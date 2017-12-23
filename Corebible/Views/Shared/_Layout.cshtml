@@ -6,7 +6,7 @@
 }
 
 <!DOCTYPE html>
-<html class=" ">
+<html>
 <head>
     <meta http-equiv="content-type" content="text/html;charset=UTF-8" />
     <meta charset="utf-8" />
@@ -46,7 +46,9 @@
 
             <!--ANCHOR LOGO-->
             <div class="text-center">
-                <img src="~/Assets/images/Core App Logo Light edit.png" style="width:50px;height:50px" />
+                <a href="@Url.Action("Index", "Home")">
+                    <img src="~/Assets/images/Core App Logo Light edit.png" style="width:50px;height:50px" />
+                </a>
             </div>
 
         </div>
@@ -455,6 +457,7 @@
                         </a>
                     </li>
 
+<<<<<<< HEAD
                     @*<li class="">
                             <a href="javascript:;">
                                 <i class="fa fa-book"></i>
@@ -535,6 +538,170 @@
 
                             </ul>
                         </li>*@
+=======
+
+                    <li class="">
+                        <a href="javascript:;">
+                            <i class="fa fa-book"></i>
+                            <span class="title">Read The Bible</span>
+                            <span class="arrow "></span>
+                        </a>
+
+                    </li>
+                    <li class="">
+                        <a href="javascript:;">
+                            <i class="fa fa-group"></i>
+                            <span class="title">Groups</span>
+                            <span class="arrow "></span>
+                        </a>
+                        <ul class="sub-menu">
+                            <li>
+                                <a class="" href="@Url.Action("Index","Groups")">My Groups</a>
+                            </li>
+                            <li>
+                                <a class="" href="@Url.Action("Create","Groups")">Create A Group</a>
+                            </li>
+                            <li>
+                                <a class="" href="@Url.Action("FindGroups","Groups")">Find New Groups</a>
+                            </li>
+
+                        </ul>
+                    </li>
+                    <li class="">
+                        <a href="javascript:;">
+                            <i class="fa fa-folder"></i>
+                            <span class="title">Plans</span>
+                            <span class="arrow "></span>
+                        </a>
+                        <ul class="sub-menu">
+                            <li>
+                                <a class="" href="@Url.Action("Index","Plans")">My Subscribed Plans</a>
+                            </li>
+                            <li>
+                                <a class="" href="@Url.Action("Create","Plans")">Create A Plan</a>
+                            </li>
+                            <li>
+                                <a class="" href="@Url.Action("FindGroups","Plans")">Find Available Plans</a>
+                            </li>
+
+                        </ul>
+                    </li>
+                    <li class="">
+                        <a href="javascript:;">
+                            <i class="fa fa-smile-o"></i>
+                            <span class="title">Friends</span>
+                            <span class="arrow "></span>
+                        </a>
+                        <ul class="sub-menu">
+                            <li>
+                                <a class="" href="@Url.Action("Index","Friends")">My Friends</a>
+                            </li>
+                            <li>
+                                <a class="" href="@Url.Action("FindFriends","Friends")">Find Friends</a>
+                            </li>
+                            <li>
+                                <a class="" href="@Url.Action("Invite","Friends")">Invite Friends</a>
+                            </li>
+                        </ul>
+                    </li>
+                    <li class="">
+                        <a href="javascript:;">
+                            <i class="fa fa-support"></i>
+                            <span class="title">Messages</span>
+                            <span class="arrow "></span>
+                        </a>
+                        <ul class="sub-menu">
+                            <li>
+                                <a class="" href="ui-pricing.html">Your Messages</a>
+                            </li>
+                            <li>
+                                <a class="" href="ui-profile.html">Send A New Message</a>
+                            </li>
+
+                        </ul>
+                    </li>
+                    @*<li class="">
+                            <a href="javascript:;">
+                                <i class="fa fa-book"></i>
+                                <span class="title">Read The Bible</span>
+                                <span class="arrow "></span>
+                            </a>
+
+                        </li>
+                        <li class="">
+                            <a href="javascript:;">
+                                <i class="fa fa-group"></i>
+                                <span class="title">Groups</span>
+                                <span class="arrow "></span>
+                            </a>
+                            <ul class="sub-menu">
+                                <li>
+                                    <a class="" href="@Url.Action("Index","Groups")">My Groups</a>
+                                </li>
+                                <li>
+                                    <a class="" href="@Url.Action("Create","Groups")">Create A Group</a>
+                                </li>
+                                <li>
+                                    <a class="" href="@Url.Action("FindGroups","Groups")">Find New Groups</a>
+                                </li>
+
+                            </ul>
+                        </li>
+                        <li class="">
+                            <a href="javascript:;">
+                                <i class="fa fa-folder"></i>
+                                <span class="title">Plans</span>
+                                <span class="arrow "></span>
+                            </a>
+                            <ul class="sub-menu">
+                                <li>
+                                    <a class="" href="@Url.Action("Index","Plans")">My Subscribed Plans</a>
+                                </li>
+                                <li>
+                                    <a class="" href="@Url.Action("Create","Plans")">Create A Plan</a>
+                                </li>
+                                <li>
+                                    <a class="" href="@Url.Action("FindGroups","Plans")">Find Available Plans</a>
+                                </li>
+
+                            </ul>
+                        </li>
+                        <li class="">
+                            <a href="javascript:;">
+                                <i class="fa fa-smile-o"></i>
+                                <span class="title">Friends</span>
+                                <span class="arrow "></span>
+                            </a>
+                            <ul class="sub-menu">
+                                <li>
+                                    <a class="" href="@Url.Action("Index","Friends")">My Friends</a>
+                                </li>
+                                <li>
+                                    <a class="" href="@Url.Action("FindFriends","Friends")">Find Friends</a>
+                                </li>
+                                <li>
+                                    <a class="" href="@Url.Action("Invite","Friends")">Invite Friends</a>
+                                </li>
+                            </ul>
+                        </li>
+                        <li class="">
+                            <a href="javascript:;">
+                                <i class="fa fa-support"></i>
+                                <span class="title">Messages</span>
+                                <span class="arrow "></span>
+                            </a>
+                            <ul class="sub-menu">
+                                <li>
+                                    <a class="" href="ui-pricing.html">Your Messages</a>
+                                </li>
+                                <li>
+                                    <a class="" href="ui-profile.html">Send A New Message</a>
+                                </li>
+
+                            </ul>
+                        </li>*@
+
+>>>>>>> aefc3f7d63361ec7d6d9aa7e555ca0370bf682ae
                     <li class="">
                         <a href="javascript:;">
                             <i class="fa fa-cogs"></i>
@@ -625,6 +792,14 @@
                         </div>
                     </section>
                 </div>
+                <footer>
+                    <center>
+                        <p>
+                            &copy; Copyright. 2017 Rights Reserved by
+                            <a style="color:rgba(118,118,118,1.0)" target="_blank" href="https://anchoredcore.com/">CORE</a>
+                        </p>
+                    </center>
+                </footer>
 
             </section>
         </section>
