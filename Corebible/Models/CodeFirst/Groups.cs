@@ -20,5 +20,6 @@ namespace Corebible.Models.CodeFirst
         public DateTime Created { get; set; }
 
         public virtual ICollection<Groupcomments> Comments { get; set; }
+        public virtual ApplicationUser Owner { get; set; }
     }
 }
