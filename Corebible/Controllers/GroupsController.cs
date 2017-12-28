@@ -11,11 +11,8 @@ using Corebible.Models.CodeFirst;
 
 namespace Corebible.Controllers
 {
-    [Authorize(Roles = "Admin")]
     public class GroupsController : Universal
     {
-        
-
         // GET: Groups
         public ActionResult Index()
         {
