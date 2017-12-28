@@ -1,33 +1,27 @@
 ﻿@model Corebible.Models.CodeFirst.Groups
+@using Microsoft.AspNet.Identity;
 
 @{
     ViewBag.Title = "Details";
 }
 
-<h2>Details</h2>
+<h2>@Model.Name</h2>
+
+<hr />
 
 <div>
-    <h4>Groups</h4>
-    <hr />
+
     <dl class="dl-horizontal">
         <dt>
-            @Html.DisplayNameFor(model => model.MemberCount)
+            No. of Members
         </dt>
 
         <dd>
-            @Html.DisplayFor(model => model.MemberCount)
+            @Html.DisplayFor(model => model.Members.Count())
         </dd>
 
         <dt>
-            @Html.DisplayNameFor(model => model.Name)
-        </dt>
-
-        <dd>
-            @Html.DisplayFor(model => model.Name)
-        </dd>
-
-        <dt>
-            @Html.DisplayNameFor(model => model.Description)
+            Group Description
         </dt>
 
         <dd>
@@ -35,32 +29,44 @@
         </dd>
 
         <dt>
-            @Html.DisplayNameFor(model => model.Active)
+            Status
+        </dt>
+
+        @if (Model.Active == true)
+        {
+            <dd>Active</dd>
+        }
+        else
+        {
+            <dd>Closed</dd>
+        }
+
+        <dt>
+            Owner
         </dt>
 
         <dd>
-            @Html.DisplayFor(model => model.Active)
+            @Html.DisplayFor(model => model.Owner.FullName)
         </dd>
 
         <dt>
-            @Html.DisplayNameFor(model => model.OwnerId)
+            Created
         </dt>
 
         <dd>
-            @Html.DisplayFor(model => model.OwnerId)
-        </dd>
-
-        <dt>
-            @Html.DisplayNameFor(model => model.Created)
-        </dt>
-
-        <dd>
-            @Html.DisplayFor(model => model.Created)
+            @Model.Created.ToString("d")
         </dd>
 
     </dl>
 </div>
 <p>
-    @Html.ActionLink("Edit", "Edit", new { id = Model.Id }) |
+
+    @if (User.Identity.GetUserId() == Model.OwnerId)
+    {
+        @Html.ActionLink("Edit", "Edit", new { id = Model.Id }) <br />
+        @Html.ActionLink("Delete", "Delete", new { id = Model.Id }) <br />
+    }
+     
     @Html.ActionLink("Back to List", "Index")
+
 </p>

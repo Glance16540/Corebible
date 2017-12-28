@@ -21,5 +21,6 @@ namespace Corebible.Models.CodeFirst
 
         public virtual ICollection<Groupcomments> Comments { get; set; }
         public virtual ApplicationUser Owner { get; set; }
+        public virtual ICollection<ApplicationUser> Members { get; set; }
     }
 }
