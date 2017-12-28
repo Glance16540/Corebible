@@ -20,6 +20,8 @@ namespace Corebible.Models
         public string TimeZone { get; set; }
         [AllowHtml]
         public string Bio { get; set; }
+      public string AgeRange { get; set; }
+        public string Gender { get; set; }
 
         public string FullName
         {
