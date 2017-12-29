@@ -5,68 +5,83 @@
     ViewBag.Title = "Details";
 }
 
-<h2>@Model.Name</h2>
+<a href="@Url.Action("Index", "Groups")">
+    <span class="fa fa-arrow-circle-left" style="font-size:32px"></span>
+</a>
+
+<br />
+<br />
+
+<div class="row">
+    <div class="col-md-10">
+        <h2>@Model.Name</h2>
+
+        <h4>
+            <i>
+                @Html.DisplayFor(model => model.Description)
+            </i>
+        </h4>
+    </div>
+    <div class="col-md-2">
+        @if (User.Identity.GetUserId() == Model.OwnerId)
+        {
+            <a href="@Url.Action("Edit", "Groups", new { id = Model.Id })" class="btn btn-info">Edit Group</a>
+            
+            <br />
+            <br />
+
+            <a href="@Url.Action("Delete", "Groups", new { id = Model.Id })" class="btn btn-danger">Delete Group</a>
+        }
+    </div>
+</div>
 
 <hr />
 
 <div>
 
-    <dl class="dl-horizontal">
-        <dt>
-            No. of Members
-        </dt>
+    <div class="row">
+        <div class="col-md-6">
+            <div class="panel">
+                <div class="panel-heading">
+                    <h2 class="text-center">
+                        Members
+                    </h2>
+                </div>
+                <div class="panel-body">
+                    <center>
+                        @if (Model.Members.Count == 0)
+                        {
+                            <i>This Group has no Members</i>
+                        }
+                        else
+                        {
+                            @Model.Members.ToList()
+                        }
+                    </center>
+                </div>
+            </div>
+        </div>
+        <div class="col-md-6">
+            <div class="panel">
+                <div class="panel-heading">
+                    <h2 class="text-center">
+                        Status
+                    </h2>
+                </div>
+                <div class="panel-body">
+                    <center>
+                        @if (Model.Active == true)
+                        {
+                            <p>Active</p>
+                        }
+                        else
+                        {
+                            <p>Closed</p>
+                        }
+                    </center>
+                </div>
+            </div>
+        </div>
+    </div>
 
-        <dd>
-            @Html.DisplayFor(model => model.Members.Count())
-        </dd>
-
-        <dt>
-            Group Description
-        </dt>
-
-        <dd>
-            @Html.DisplayFor(model => model.Description)
-        </dd>
-
-        <dt>
-            Status
-        </dt>
-
-        @if (Model.Active == true)
-        {
-            <dd>Active</dd>
-        }
-        else
-        {
-            <dd>Closed</dd>
-        }
-
-        <dt>
-            Owner
-        </dt>
-
-        <dd>
-            @Html.DisplayFor(model => model.Owner.FullName)
-        </dd>
-
-        <dt>
-            Created
-        </dt>
-
-        <dd>
-            @Model.Created.ToString("d")
-        </dd>
-
-    </dl>
 </div>
-<p>
-
-    @if (User.Identity.GetUserId() == Model.OwnerId)
-    {
-        @Html.ActionLink("Edit", "Edit", new { id = Model.Id }) <br />
-        @Html.ActionLink("Delete", "Delete", new { id = Model.Id }) <br />
-    }
-     
-    @Html.ActionLink("Back to List", "Index")
-
-</p>
