@@ -20,6 +20,8 @@ namespace Corebible.Models
         public string TimeZone { get; set; }
         [AllowHtml]
         public string Bio { get; set; }
+      public string AgeRange { get; set; }
+        public string Gender { get; set; }
 
         public string FullName
         {
@@ -35,11 +37,14 @@ namespace Corebible.Models
         {
             Groupcomment = new HashSet<Groupcomments>();
             PlanReviews = new HashSet<PlanReview>();
-         
+            Groups = new HashSet<Groups>();
+            Friends = new HashSet<Friends>();
         }
 
         public virtual ICollection<Groupcomments> Groupcomment { get; set; }
         public virtual ICollection<PlanReview> PlanReviews { get; set; }
+        public virtual ICollection<Groups> Groups { get; set; }
+        public virtual ICollection<Friends> Friends { get; set; }
 
 
         public async Task<ClaimsIdentity> GenerateUserIdentityAsync(UserManager<ApplicationUser> manager)

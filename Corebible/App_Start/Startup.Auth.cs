@@ -10,6 +10,7 @@ using System.Net.Mail;
 using System.Web.Configuration;
 using System.Threading.Tasks;
 using System.Net;
+using Microsoft.AspNet.SignalR;
 
 namespace Corebible
 {
@@ -19,10 +20,7 @@ namespace Corebible
         // For more information on configuring authentication, please visit https://go.microsoft.com/fwlink/?LinkId=301864
         public void ConfigureAuth(IAppBuilder app)
         {
-           
             
-                // Any connection or hub wire up and configuration should go here
-                app.MapSignalR();
             
             // Configure the db context, user manager and signin manager to use a single instance per request
             app.CreatePerOwinContext(ApplicationDbContext.Create);
@@ -46,6 +44,13 @@ namespace Corebible
                 }
             });            
             app.UseExternalSignInCookie(DefaultAuthenticationTypes.ExternalCookie);
+
+            //var idProvider = new CustomUserIdProvider();
+
+            //GlobalHost.DependencyResolver.Register(typeof(IUserIdProvider), () => idProvider);
+
+            // Any connection or hub wire up and configuration should go here
+            app.MapSignalR();
 
             // Enables the application to temporarily store user information when they are verifying the second factor in the two-factor authentication process.
             app.UseTwoFactorSignInCookie(DefaultAuthenticationTypes.TwoFactorCookie, TimeSpan.FromMinutes(5));

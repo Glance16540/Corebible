@@ -9,10 +9,10 @@ namespace Corebible.Models.CodeFirst
     {
         public Groups()
         {
-          Comments = new HashSet<Groupcomments>();
+            Comments = new HashSet<Groupcomments>();
+            Members = new HashSet<ApplicationUser>();
         }
         public int Id { get; set; }
-        public int MemberCount { get; set; }
         public string Name { get; set; }
         public string Description { get; set; }
         public bool Active { get; set; }
@@ -20,5 +20,6 @@ namespace Corebible.Models.CodeFirst
         public DateTime Created { get; set; }
 
         public virtual ICollection<Groupcomments> Comments { get; set; }
+        public virtual ICollection<ApplicationUser> Members { get; set; }
     }
 }

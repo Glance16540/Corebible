@@ -1,11 +1,11 @@
 ﻿@model Corebible.Models.RegisterViewModel
 @{
     ViewBag.Title = "Register";
-} 
+}
 @{Layout = null;}
 
 
-  <!-- CORE CSS FRAMEWORK - START -->
+<!-- CORE CSS FRAMEWORK - START -->
 <link href="~/Assets/plugins/pace/pace-theme-flash.css" rel="stylesheet" type="text/css" media="screen" />
 <link href="~/Assets/plugins/bootstrap/css/bootstrap.min.css" rel="stylesheet" type="text/css" />
 <link href="~/Assets/plugins/bootstrap/css/bootstrap-theme.min.css" rel="stylesheet" type="text/css" />
@@ -26,12 +26,12 @@
 <link href="~/Assets/plugins/bootstrap3-wysihtml5/css/bootstrap3-wysihtml5.min.css" rel="stylesheet" />
 
 
-<body class=" login_page">
+<body class="login_page">
 
 
     <div class="register-wrapper">
         <div id="register" class="login loginpage col-lg-offset-4 col-lg-4 col-md-offset-3 col-md-6 col-sm-offset-3 col-sm-6 col-xs-offset-0 col-xs-12">
-            <h1><a href="#" title="Login Page" tabindex="-1">Please Register Your Profile</a></h1>
+            <h1><a href="@Url.Action("Login")" title="Login Page" tabindex="-1">Please Register Your Profile</a></h1>
 
 
             @using (Html.BeginForm("Register", "Account", FormMethod.Post, new { @class = "form-horizontal", role = "form", enctype = "Multipart/form-data" }))
@@ -42,28 +42,34 @@
                 <p>
                     <label for="user_login">
                         Email<br />
-                        @Html.TextBoxFor(m => m.Email, new { @class = "form-control" })
+                        @Html.TextBoxFor(m => m.Email, new { @class = "form-control", Style = "background-color: white" })
                         @Html.ValidationMessageFor(m => m.Email, "", new { @class = "text-danger" })
                     </label>
                 </p>
                 <p>
                     <label for="user_login">
                         First Name<br />
-                        @Html.TextBoxFor(m => m.FirstName, new { @class = "form-control" })
+                        @Html.TextBoxFor(m => m.FirstName, new { @class = "form-control", Style = "background-color: white" })
                         @Html.ValidationMessageFor(m => m.FirstName, "", new { @class = "text-danger" })
                     </label>
                 </p>
                 <p>
                     <label for="user_login">
                         Last Name<br />
-                        @Html.TextBoxFor(m => m.LastName, new { @class = "form-control" })
+                        @Html.TextBoxFor(m => m.LastName, new { @class = "form-control", Style = "background-color: white" })
                         @Html.ValidationMessageFor(m => m.LastName, "", new { @class = "text-danger" })
                     </label>
                 </p>
                 <p>
-                    *password needs to be a minimum of 6 characters with one number, and one uppercase letter*
                     <label for="user_pass">
-                        Password<br />
+
+                        Password <a href="#" style="color:white;text-decoration:none" data-toggle="tooltip"
+                                    title="Your password must contain at least 6 characters, one lowercase letter, one upercase letter, and one number">
+                            <span class="fa fa-info-circle"></span>
+                        </a>
+
+                        <br />
+
                         @Html.PasswordFor(m => m.Password, new { @class = "form-control" })
                         @Html.ValidationMessageFor(m => m.Password, "", new { @class = "text-danger" })
                     </label>
@@ -83,29 +89,29 @@
                         <div id="fileDisplay" style="max-width: 180px; max-height:200px; padding-top: 10px">
 
                             @*@if (Model.ProfilePic != null)
-                {
-                                <img src="@Model.ProfilePic" alt="Profile Picture" style="border: 1px solid #8da0aa ; margin-top: 15px; max-width: 180px; max-height:300px; background-color: white" />
-                            }**@
-                   </div>
-                       
-                        @Html.ValidationMessageFor(m => m.ProfilePic, "", new { @class = "text-danger" })
-                   </label>
-             </p>
-                <p>
-                    
-                        TimeZone<br />
-                      @Html.DropDownList("TimeZone", null, new { @class = "searchable-select" })
+                                {
+                                                <img src="@Model.ProfilePic" alt="Profile Picture" style="border: 1px solid #8da0aa ; margin-top: 15px; max-width: 180px; max-height:300px; background-color: white" />
+                                            }**@
+                        </div>
 
-                        @Html.ValidationMessageFor(m => m.TimeZone, "", new { @class = "text-danger" })
-                  
+                        @Html.ValidationMessageFor(m => m.ProfilePic, "", new { @class = "text-danger" })
+                    </label>
                 </p>
                 <p>
-                   
-                        Bio<br />
-                        <textarea class="bootstrap-wysihtml5-textarea" name="Bio" placeholder="Please Enter A Bio..." style="width: 100%; height: 250px; font-size: 14px; line-height: 23px;padding:15px;color:none;"></textarea>
 
-                        @Html.ValidationMessageFor(m => m.Bio, "", new { @class = "text-danger" })
-                 
+                    TimeZone<br />
+                    @Html.DropDownList("TimeZone", null, new { @class = "searchable-select" })
+
+                    @Html.ValidationMessageFor(m => m.TimeZone, "", new { @class = "text-danger" })
+
+                </p>
+                <p>
+
+                    Bio<br />
+                    <textarea class="bootstrap-wysihtml5-textarea" name="Bio" placeholder="Please Enter A Bio..." style="width: 100%; height: 250px; font-size: 14px; line-height: 23px;padding:15px;color:none;"></textarea>
+
+                    @Html.ValidationMessageFor(m => m.Bio, "", new { @class = "text-danger" })
+
                 </p>
 
                 @*<p class="forgetmenot">
@@ -113,13 +119,15 @@
                     </p>*@
 
 
+                <center>
+                    <p class="submit">
+                        <input type="submit" class="btn btn-default" value="Register" />
+                    </p>
 
-                <p class="submit">
-                    <input type="submit" class="btn btn-default" value="Register" />
-                </p>
+                    <br />
 
-
-              
+                    Already have an account? <a href="@Url.Action("Login", "Account")">Login</a>
+                </center>
 
             }
         </div>
@@ -129,79 +137,6 @@
 
 </body>
 
-
-
-@*@using (Html.BeginForm("Register", "Account", FormMethod.Post, new { @class = "form-horizontal", role = "form" }))
-{
-    @Html.AntiForgeryToken()
-    <h4>Create a new account.</h4>
-    <hr />
-    @Html.ValidationSummary("", new { @class = "text-danger" })
-    <div class="form-group">
-        @Html.LabelFor(m => m.Email, new { @class = "col-md-2 control-label" })
-        <div class="col-md-10">
-            @Html.TextBoxFor(m => m.Email, new { @class = "form-control" })
-        </div>
-    </div>
-    <div class="form-group">
-        @Html.LabelFor(m => m.FirstName, new { @class = "col-md-2 control-label" })
-        <div class="col-md-10">
-            @Html.TextBoxFor(m => m.FirstName, new { @class = "form-control" })
-        </div>
-    </div>
-    <div class="form-group">
-        @Html.LabelFor(m => m.LastName, new { @class = "col-md-2 control-label" })
-        <div class="col-md-10">
-            @Html.TextBoxFor(m => m.LastName, new { @class = "form-control" })
-        </div>
-    </div>
-    <div class="form-group">
-        @Html.LabelFor(m => m.Password, new { @class = "col-md-2 control-label" })
-        <div class="col-md-10">
-            @Html.PasswordFor(m => m.Password, new { @class = "form-control" })
-        </div>
-    </div>
-    <div class="form-group">
-        @Html.LabelFor(m => m.ConfirmPassword, new { @class = "col-md-2 control-label" })
-        <div class="col-md-10">
-            @Html.PasswordFor(m => m.ConfirmPassword, new { @class = "form-control" })
-        </div>
-    </div>
-    <div class="form-group">
-        @Html.LabelFor(m => m.ProfilePic, new { @class = "col-md-2 control-label" })
-        <div class="col-md-10">
-            <input type="file" name="Upload Your Profile Pic" class=" form-control" />
-            <div id="fileDisplay" style="max-width: 180px; max-height:200px; padding-top: 10px">
-                @*@*@*@if (Model.ProfilePic != null)*@
-                @*{
-                    <img src="@Model.ProfilePic" alt="Profile Picture" style="border: 1px solid #8da0aa ; margin-top: 15px; max-width: 180px; max-height:300px; background-color: white" />
-                }*@
-            @*</div>
-        </div>
-    </div>
-    <div class="form-group">
-        @Html.LabelFor(m => m.TimeZone, new { @class = "col-md-2 control-label" })
-        <div class="col-md-10">
-            @Html.DropDownList("TimeZone", null, new { @class = "searchable-select" })
-
-        </div>
-    </div>
-
-    <div class="form-group">
-        @Html.LabelFor(m => m.Bio, new { @class = "col-md-2 control-label" })
-        <div class="col-md-10">
-            <textarea class="bootstrap-wysihtml5-textarea" name="Bio" placeholder="Please Enter A Bio..." style="width: 100%; height: 250px; font-size: 14px; line-height: 23px;padding:15px;"></textarea>
-
-        </div>
-    </div>
-
-
-    <div class="form-group">
-        <div class="col-md-offset-2 col-md-10">
-            <input type="submit" class="btn btn-default" value="Register" />
-        </div>
-    </div>
-}*@
 
 
 
@@ -230,38 +165,43 @@
 @section Scripts {
     @Scripts.Render("~/bundles/jqueryval")
 
-<script>
-      var fileInput = document.getElementById('fileUpload');
-      var fileDisplayArea = document.getElementById('fileDisplay');
+    <script>
+        var fileInput = document.getElementById('fileUpload');
+        var fileDisplayArea = document.getElementById('fileDisplay');
 
-      //File Reader Function for displaying images
-      fileInput.addEventListener('change', function (e) {
-          var file = fileInput.files[0];
-          var imageType = /image.*/;
+        //File Reader Function for displaying images
+        fileInput.addEventListener('change', function (e) {
+            var file = fileInput.files[0];
+            var imageType = /image.*/;
 
-          if (file.type.match(imageType)) {
-              var reader = new FileReader();
+            if (file.type.match(imageType)) {
+                var reader = new FileReader();
 
-              reader.onload = function (e) {
-                  fileDisplayArea.innerHTML = "";
+                reader.onload = function (e) {
+                    fileDisplayArea.innerHTML = "";
 
-                  // Create a new image.
-                  var img = new Image();
-                  // Set the img src property using the data URL.
-                  img.src = reader.result;
-                  // Add the image to the page.
-                  fileDisplayArea.appendChild(img);
-              }
+                    // Create a new image.
+                    var img = new Image();
+                    // Set the img src property using the data URL.
+                    img.src = reader.result;
+                    // Add the image to the page.
+                    fileDisplayArea.appendChild(img);
+                }
 
-              reader.readAsDataURL(file);
-          }
+                reader.readAsDataURL(file);
+            }
 
-          else {
-              fileDisplayArea.innerHTML = "File not supported!";
-          }
-      });
-</script>
-<script src="~/Assets/plugins/bootstrap3-wysihtml5/js/bootstrap3-wysihtml5.all.min.js"></script>
+            else {
+                fileDisplayArea.innerHTML = "File not supported!";
+            }
+        });
+    </script>
+    <script>
+        $(document).ready(function () {
+            $('[data-toggle="tooltip"]').tooltip();
+        });
+    </script>
+    <script src="~/Assets/plugins/bootstrap3-wysihtml5/js/bootstrap3-wysihtml5.all.min.js"></script>
 
 
 

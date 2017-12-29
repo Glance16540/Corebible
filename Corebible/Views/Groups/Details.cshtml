@@ -1,66 +1,87 @@
 ﻿@model Corebible.Models.CodeFirst.Groups
+@using Microsoft.AspNet.Identity;
 
 @{
     ViewBag.Title = "Details";
 }
 
-<h2>Details</h2>
+<a href="@Url.Action("Index", "Groups")">
+    <span class="fa fa-arrow-circle-left" style="font-size:32px"></span>
+</a>
+
+<br />
+<br />
+
+<div class="row">
+    <div class="col-md-10">
+        <h2>@Model.Name</h2>
+
+        <h4>
+            <i>
+                @Html.DisplayFor(model => model.Description)
+            </i>
+        </h4>
+    </div>
+    <div class="col-md-2">
+        @if (User.Identity.GetUserId() == Model.OwnerId)
+        {
+            <a href="@Url.Action("Edit", "Groups", new { id = Model.Id })" class="btn btn-info">Edit Group</a>
+            
+            <br />
+            <br />
+
+            <a href="@Url.Action("Delete", "Groups", new { id = Model.Id })" class="btn btn-danger">Delete Group</a>
+        }
+    </div>
+</div>
+
+<hr />
 
 <div>
-    <h4>Groups</h4>
-    <hr />
-    <dl class="dl-horizontal">
-        <dt>
-            @Html.DisplayNameFor(model => model.MemberCount)
-        </dt>
 
-        <dd>
-            @Html.DisplayFor(model => model.MemberCount)
-        </dd>
+    <div class="row">
+        <div class="col-md-6">
+            <div class="panel">
+                <div class="panel-heading">
+                    <h2 class="text-center">
+                        Members
+                    </h2>
+                </div>
+                <div class="panel-body">
+                    <center>
+                        @if (Model.Members.Count == 0)
+                        {
+                            <i>This Group has no Members</i>
+                        }
+                        else
+                        {
+                            @Model.Members.ToList()
+                        }
+                    </center>
+                </div>
+            </div>
+        </div>
+        <div class="col-md-6">
+            <div class="panel">
+                <div class="panel-heading">
+                    <h2 class="text-center">
+                        Status
+                    </h2>
+                </div>
+                <div class="panel-body">
+                    <center>
+                        @if (Model.Active == true)
+                        {
+                            <p>Active</p>
+                        }
+                        else
+                        {
+                            <p>Closed</p>
+                        }
+                    </center>
+                </div>
+            </div>
+        </div>
+    </div>
 
-        <dt>
-            @Html.DisplayNameFor(model => model.Name)
-        </dt>
-
-        <dd>
-            @Html.DisplayFor(model => model.Name)
-        </dd>
-
-        <dt>
-            @Html.DisplayNameFor(model => model.Description)
-        </dt>
-
-        <dd>
-            @Html.DisplayFor(model => model.Description)
-        </dd>
-
-        <dt>
-            @Html.DisplayNameFor(model => model.Active)
-        </dt>
-
-        <dd>
-            @Html.DisplayFor(model => model.Active)
-        </dd>
-
-        <dt>
-            @Html.DisplayNameFor(model => model.OwnerId)
-        </dt>
-
-        <dd>
-            @Html.DisplayFor(model => model.OwnerId)
-        </dd>
-
-        <dt>
-            @Html.DisplayNameFor(model => model.Created)
-        </dt>
-
-        <dd>
-            @Html.DisplayFor(model => model.Created)
-        </dd>
-
-    </dl>
 </div>
-<p>
-    @Html.ActionLink("Edit", "Edit", new { id = Model.Id }) |
-    @Html.ActionLink("Back to List", "Index")
-</p>

@@ -1,63 +1,90 @@
 ﻿@model IEnumerable<Corebible.Models.CodeFirst.Groups>
+@using Microsoft.AspNet.Identity;
+
+<head>
+    <style>
+        tr:nth-child(even) {
+            background-color: white;
+        }
+
+        tr:nth-child(odd) {
+            background-color: rgb(31, 181, 172);
+            color:white;
+        }
+
+        tr:nth-child(odd) a {
+            color: white;
+        }
+    </style>
+</head>
 
 @{
     ViewBag.Title = "Index";
 }
 
-<h2>Index</h2>
+<div class="row">
+    <div class="col-md-6">
+        <h2>My Groups</h2>
+    </div>
+    <div class="col-md-6">
+        <p class="pull-right">
+            <a href="@Url.Action("Create", "Groups")" class="btn btn-primary">Create New Group</a>
+        </p>
+    </div>
+</div>
 
-<p>
-    @Html.ActionLink("Create New", "Create")
-</p>
-<table class="table">
+<br />
+
+<table class="table text-center">
     <tr>
-        <th>
-            @Html.DisplayNameFor(model => model.MemberCount)
+        <th class="text-center">
+            Group Name
         </th>
-        <th>
-            @Html.DisplayNameFor(model => model.Name)
+        <th class="text-center">
+            No. of Members
         </th>
-        <th>
-            @Html.DisplayNameFor(model => model.Description)
+        <th class="text-center">
+            Status
         </th>
-        <th>
-            @Html.DisplayNameFor(model => model.Active)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.OwnerId)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.Created)
+        <th class="text-center">
+            Group Owner
         </th>
         <th></th>
     </tr>
 
-@foreach (var item in Model) {
-    <tr>
-        <td>
-            @Html.DisplayFor(modelItem => item.MemberCount)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.Name)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.Description)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.Active)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.OwnerId)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.Created)
-        </td>
-        <td>
-            @Html.ActionLink("Edit", "Edit", new { id=item.Id }) |
-            @Html.ActionLink("Details", "Details", new { id=item.Id }) |
-            @Html.ActionLink("Delete", "Delete", new { id=item.Id })
-        </td>
-    </tr>
+@foreach (var item in Model)
+{
+
+        <tr style="border-bottom: solid 2px rgb(31, 181, 172)">
+            <td style="padding: 15px 0 15px 0">
+                <a href="@Url.Action("Details", "Groups", new { id = item.Id })">
+                    @Html.DisplayFor(modelItem => item.Name)
+                </a>
+            </td>
+            <td style="padding: 25px 0 15px 0"></td>
+            @if (item.Active == true)
+            {
+                <td style="padding: 25px 0 15px 0">
+                    Active
+                </td>
+            }
+            else
+            {
+                <td style="padding: 25px 0 15px 0">
+                    Closed
+                </td>
+            }
+            <td style="padding: 25px 0 15px 0"></td>
+            <td style="padding: 25px 0 15px 0">
+
+                @if (User.Identity.GetUserId() == item.OwnerId)
+                {
+                    @Html.ActionLink("Edit Group", "Edit", new { id = item.Id }) <br />
+                    @Html.ActionLink("Delete Group", "Delete", new { id = item.Id }) <br />
+                }
+
+            </td>
+        </tr>
 }
 
 </table>
