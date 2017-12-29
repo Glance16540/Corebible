@@ -1,6 +1,23 @@
 ﻿@model IEnumerable<Corebible.Models.CodeFirst.Groups>
 @using Microsoft.AspNet.Identity;
 
+<head>
+    <style>
+        tr:nth-child(even) {
+            background-color: white;
+        }
+
+        tr:nth-child(odd) {
+            background-color: rgb(31, 181, 172);
+            color:white;
+        }
+
+        tr:nth-child(odd) a {
+            color: white;
+        }
+    </style>
+</head>
+
 @{
     ViewBag.Title = "Index";
 }
@@ -18,63 +35,56 @@
 
 <br />
 
-<table class="table">
+<table class="table text-center">
     <tr>
-        <th>
+        <th class="text-center">
             Group Name
         </th>
-        <th>
+        <th class="text-center">
             No. of Members
         </th>
-        <th>
-            @Html.DisplayNameFor(model => model.Description)
-        </th>
-        <th>
+        <th class="text-center">
             Status
         </th>
-        <th>
+        <th class="text-center">
             Group Owner
         </th>
         <th></th>
     </tr>
 
-@foreach (var item in Model) {
-    <tr>
-        <td>
-            @Html.DisplayFor(modelItem => item.Name)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.MemberCount)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.Description)
-        </td>
-        @if (item.Active == true)
-        {
-            <td>
-                Active
+@foreach (var item in Model)
+{
+
+        <tr style="border-bottom: solid 2px rgb(31, 181, 172)">
+            <td style="padding: 15px 0 15px 0">
+                <a href="@Url.Action("Details", "Groups", new { id = item.Id })">
+                    @Html.DisplayFor(modelItem => item.Name)
+                </a>
             </td>
-        }
-        else
-        {
-            <td>
-                Closed
-            </td>
-        }
-        <td>
-            @Html.DisplayFor(modelItem => item.Owner.FullName)
-        </td>
-        <td>
-            @if (User.Identity.GetUserId() == item.OwnerId)
+            <td style="padding: 25px 0 15px 0"></td>
+            @if (item.Active == true)
             {
-                @Html.ActionLink("Edit Group", "Edit", new { id = item.Id }) <br />
-                @Html.ActionLink("Delete Group", "Delete", new { id = item.Id }) <br />
+                <td style="padding: 25px 0 15px 0">
+                    Active
+                </td>
             }
-            
-            @Html.ActionLink("View Group", "Details", new { id=item.Id })
-            
-        </td>
-    </tr>
+            else
+            {
+                <td style="padding: 25px 0 15px 0">
+                    Closed
+                </td>
+            }
+            <td style="padding: 25px 0 15px 0"></td>
+            <td style="padding: 25px 0 15px 0">
+
+                @if (User.Identity.GetUserId() == item.OwnerId)
+                {
+                    @Html.ActionLink("Edit Group", "Edit", new { id = item.Id }) <br />
+                    @Html.ActionLink("Delete Group", "Delete", new { id = item.Id }) <br />
+                }
+
+            </td>
+        </tr>
 }
 
 </table>
