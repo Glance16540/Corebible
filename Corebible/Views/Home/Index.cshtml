@@ -2,39 +2,119 @@
     ViewBag.Title = "Home Page";
 }
 
-<h1 class="text-center" style="font-size:42px;font-weight:500;color:rgb(31, 181, 172)">Welcome, @ViewBag.FirstName, to <br /> CORE Bible</h1>
+@if (User.Identity.IsAuthenticated)
+{
+    <h1 class="text-center" style="font-size:42px;font-weight:500;color:rgb(31, 181, 172)">Welcome, @ViewBag.FirstName, to <br /> CORE Bible</h1>
 
-<br />
+    <br />
 
-<p class="lead text-center">We are constantly updating and bringing new content for you to enjoy! Thank you for joining and please let us know if you have any problems,
-    questions, or concerns!</p>
-<p class="text-center">
-    <a href="@Url.Action("FAQ","Manage")" class="btn btn-primary btn-lg">Vist our FAQ &raquo;</a>
-</p>
+    <p class="lead text-center">
+        We are constantly updating and bringing new content for you to enjoy! Thank you for joining and please let us know if you have any problems,
+        questions, or concerns!
+    </p>
+    <p class="text-center">
+        <a href="@Url.Action("FAQ","Manage")" class="btn btn-primary btn-lg">Vist our FAQ &raquo;</a>
+    </p>
 
-<br />
+    <br />
 
 
-@*<div class="jumbotron">
-        <h1>Welcome @ViewBag.FirstName <br />To CORE Bible!</h1>
-        <p class="lead">We are constantly updating and bringing new content for you to enjoy! Thank you for joining and please let us know if you have any problems, questions, or concerns!</p>
-        <p><a href="@Url.Action("FAQ","Manage")" class="btn btn-primary btn-lg">Vist our FAQ &raquo;</a></p>
-    </div>*@
+    @*<div class="jumbotron">
+            <h1>Welcome @ViewBag.FirstName <br />To CORE Bible!</h1>
+            <p class="lead">We are constantly updating and bringing new content for you to enjoy! Thank you for joining and please let us know if you have any problems, questions, or concerns!</p>
+            <p><a href="@Url.Action("FAQ","Manage")" class="btn btn-primary btn-lg">Vist our FAQ &raquo;</a></p>
+        </div>*@
 
-<div class="row">
-    <div class="col-md-6">
-        <h2>Our Mission</h2>
-        <p>
-            CORE's mission is to connect others and restore excellence and through the CORE Bible we will establish that. 
-            Within this app there will be groups which you can discuss topics of the bible with friends or people all around the world, group and personal study plans, all valid Bible translations and more!
-            We believe CORE Bible will establish a virtual community of believers that come together and study the Word of God!
-        </p>
-        <p><a class="btn btn-default" href="https://anchoredcore.com/core-bible-app/" target="_blank">Learn more &raquo;</a></p>
+    <div class="row">
+        <div class="col-md-6">
+            <h2>Our Mission</h2>
+            <p>
+                CORE's mission is to connect others and restore excellence and through the CORE Bible we will establish that.
+                Within this app there will be groups which you can discuss topics of the bible with friends or people all around the world, group and personal study plans, all valid Bible translations and more!
+                We believe CORE Bible will establish a virtual community of believers that come together and study the Word of God!
+            </p>
+            <p><a class="btn btn-default" href="https://anchoredcore.com/core-bible-app/" target="_blank">Learn more &raquo;</a></p>
+        </div>
+
+        <div class="col-md-6">
+            <h2>So, now what?</h2>
+            <p>Right now you are invited to create a profile! We expect the app to come out within a few months. We will update as our progress continues!</p>
+            <p><a class="btn btn-default" href="@Url.Action("UpdateInformation","Manage")">Update Profile &raquo;</a></p>
+        </div>
     </div>
-   
-    <div class="col-md-6">
-        <h2>So, now what?</h2>
-        <p>Right now you are invited to create a profile! We expect the app to come out within a few months. We will update as our progress continues!</p>
-        <p><a class="btn btn-default" href="@Url.Action("UpdateInformation","Manage")">Update Profile &raquo;</a></p>
-    </div>
-</div>
+}
+else
+{
+    {
+        Layout = null;
+    }
+
+    <!DOCTYPE html>
+    <html>
+    <head>
+        <meta http-equiv="content-type" content="text/html;charset=UTF-8" />
+        <meta charset="utf-8" />
+        <title>CORE Bible</title>
+        <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
+        <meta content="" name="description" />
+        <meta content="" name="author" />
+
+        <!-- CORE CSS FRAMEWORK - START -->
+        <link href="~/Assets/plugins/pace/pace-theme-flash.css" rel="stylesheet" type="text/css" media="screen" />
+        <link href="~/Assets/plugins/bootstrap/css/bootstrap.min.css" rel="stylesheet" type="text/css" />
+        <link href="~/Assets/plugins/bootstrap/css/bootstrap-theme.min.css" rel="stylesheet" type="text/css" />
+
+        <link href="~/Assets/fonts/font-awesome/css/font-awesome.css" rel="stylesheet" type="text/css" />
+
+        <link href="~/Assets/css/animate.min.css" rel="stylesheet" type="text/css" />
+        <link href="~/Assets/plugins/perfect-scrollbar/perfect-scrollbar.css" rel="stylesheet" type="text/css" />
+
+        <!-- CORE CSS FRAMEWORK - END -->
+        <!-- OTHER SCRIPTS INCLUDED ON THIS PAGE - START -->
+        <!-- OTHER SCRIPTS INCLUDED ON THIS PAGE - END -->
+        <!-- CORE CSS TEMPLATE - START -->
+        <link href="~/Assets/css/style.css" rel="stylesheet" type="text/css" />
+        <link href="~/Assets/css/responsive.css" rel="stylesheet" type="text/css" />
+
+        <!-- CORE CSS TEMPLATE - END -->
+
+    </head>
+
+    <!-- END HEAD -->
+    <!-- BEGIN BODY -->
+    <body>
+
+        <!-- START TOPBAR -->
+        <div class='page-topbar '>
+            <div class='logo-area'>
+
+                <!--ANCHOR LOGO-->
+                <div class="text-center">
+                    <img src="~/Assets/images/Core App Logo Light edit.png" style="width:50px;height:50px" />
+                </div>
+
+            </div>
+            <div class='quick-area'>
+                <div class='pull-right'>
+                    <a href="@Url.Action("Login", "Account")" class="btn btn-primary" style="padding:10px 25px 10px 25px;margin-right:50px;">LOGIN</a>
+                </div>
+            </div>
+
+        </div>
+        <!-- END TOPBAR -->
+        <div style="padding:30px 50px 20px 50px">
+            <center>
+                <img src="~/Assets/images/Core App Logo.png" style="width:400px;height:400px" />
+
+                <h1>CORE Bible</h1>
+
+                <h4>Connecting others and Restoring Excellence </h4>
+            </center>
+        </div>
+
+    </body>
+
+
+</html>
+}
+

@@ -12,7 +12,6 @@ using System.Web.Services.Description;
 
 namespace Corebible.Controllers
 {
-    [Authorize]
     public class HomeController : Universal
     {
         public ActionResult Index()
@@ -26,14 +25,17 @@ namespace Corebible.Controllers
 
             return View();
         }
+
         public ActionResult Chat()
         {
             return View();
         }
+
         public ActionResult Contact()
         {
             return View();
         }
+
         [HttpPost]
         [ValidateAntiForgeryToken]
         public async Task<ActionResult> Contact(EmailModel model)
