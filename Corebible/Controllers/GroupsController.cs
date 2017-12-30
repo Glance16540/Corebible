@@ -19,7 +19,7 @@ namespace Corebible.Controllers
         {
             var user = db.Users.Find(User.Identity.GetUserId());
 
-            return View(user.Groups.OrderByDescending(g => g.Name).ToList());
+            return View(db.Group.ToList());
         }
 
         // GET: Groups/Details/5
