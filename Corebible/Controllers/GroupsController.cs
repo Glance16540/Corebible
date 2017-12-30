@@ -8,15 +8,18 @@ using System.Web;
 using System.Web.Mvc;
 using Corebible.Models;
 using Corebible.Models.CodeFirst;
+using Microsoft.AspNet.Identity;
 
 namespace Corebible.Controllers
 {
     public class GroupsController : Universal
     {
         // GET: Groups
-        public ActionResult Index()
+        public ActionResult Index(int? id)
         {
-            return View(db.Group.ToList());
+            var user = db.Users.Find(User.Identity.GetUserId());
+
+            return View(user.Groups.OrderByDescending(g => g.Name).ToList());
         }
 
         // GET: Groups/Details/5
@@ -45,10 +48,14 @@ namespace Corebible.Controllers
         // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Create([Bind(Include = "Id,MemberCount,Name,Description,Active,OwnerId,Created")] Groups groups)
+        public ActionResult Create([Bind(Include = "Id,Name,Description,Active,OwnerId,Created")] Groups groups)
         {
             if (ModelState.IsValid)
             {
+                groups.Created = DateTime.UtcNow;
+                groups.OwnerId = User.Identity.GetUserId();
+                groups.Active = true;
+
                 db.Group.Add(groups);
                 db.SaveChanges();
                 return RedirectToAction("Index");
