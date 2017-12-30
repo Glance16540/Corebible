@@ -3,6 +3,7 @@
 
 @{
     ViewBag.Title = "Details";
+    var user = User.Identity.GetUserId();
 }
 
 <a href="@Url.Action("Index", "Groups")">
@@ -26,7 +27,7 @@
         @if (User.Identity.GetUserId() == Model.OwnerId)
         {
             <a href="@Url.Action("Edit", "Groups", new { id = Model.Id })" class="btn btn-info">Edit Group</a>
-            
+
             <br />
             <br />
 
@@ -40,7 +41,7 @@
 <div>
 
     <div class="row">
-        <div class="col-md-6">
+        <div class="col-md-4">
             <div class="panel">
                 <div class="panel-heading">
                     <h2 class="text-center">
@@ -61,7 +62,7 @@
                 </div>
             </div>
         </div>
-        <div class="col-md-6">
+        <div class="col-md-4">
             <div class="panel">
                 <div class="panel-heading">
                     <h2 class="text-center">
@@ -78,6 +79,20 @@
                         {
                             <p>Closed</p>
                         }
+                    </center>
+                </div>
+            </div>
+        </div>
+        <div class="col-md-4">
+            <div class="panel">
+                <div class="panel-heading">
+                    <h2 class="text-center">
+                        Group Owner
+                    </h2>
+                </div>
+                <div class="panel-body">
+                    <center>
+                        @Model.Owner.FullName
                     </center>
                 </div>
             </div>
