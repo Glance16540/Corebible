@@ -132,6 +132,30 @@ namespace Corebible.Controllers
             return RedirectToAction("Index");
         }
 
+        ////////////////////////////////////////////////////////////////////
+
+        // POST: Groups/Comments/Create
+        // To protect from overposting attacks, please enable the specific properties you want to bind to, for 
+        // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public ActionResult CreateComment([Bind(Include = "Id,Body,Created,GroupId,AuthorId")] Groupcomments groupComments)
+        {
+            if (ModelState.IsValid)
+            {
+                groupComments.Created = DateTime.UtcNow;
+                groupComments.AuthorId = User.Identity.GetUserId();
+
+
+                db.GroupComment.Add(groupComments);
+                db.SaveChanges();
+                return RedirectToAction("Index");
+            }
+
+            return RedirectToAction("Details", "Groups", new { id = groupComments.GroupId });
+        }
+
+
         protected override void Dispose(bool disposing)
         {
             if (disposing)
