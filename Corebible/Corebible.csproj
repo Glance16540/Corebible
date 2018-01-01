@@ -2770,6 +2770,7 @@
     <Content Include="Views\Account\UserProfile.cshtml" />
     <Content Include="Views\Manage\FAQ.cshtml" />
     <Content Include="Views\Home\Chat.cshtml" />
+    <Content Include="Views\Groups\Featured.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

@@ -12,6 +12,7 @@ using Microsoft.AspNet.Identity;
 
 namespace Corebible.Controllers
 {
+    [Authorize]
     public class GroupsController : Universal
     {
         // GET: Groups
@@ -19,7 +20,13 @@ namespace Corebible.Controllers
         {
             var user = db.Users.Find(User.Identity.GetUserId());
 
-            return View(user.Groups.OrderByDescending(g => g.Name).ToList());
+            return View(user.Groups.ToList());
+        }
+
+        // GET: Groups/AllGroups
+        public ActionResult Featured()
+        {
+            return View(db.Group.ToList());
         }
 
         // GET: Groups/Details/5
@@ -52,9 +59,13 @@ namespace Corebible.Controllers
         {
             if (ModelState.IsValid)
             {
+                var user = db.Users.Find(User.Identity.GetUserId());
+
                 groups.Created = DateTime.UtcNow;
                 groups.OwnerId = User.Identity.GetUserId();
                 groups.Active = true;
+
+                user.Groups.Add(groups);
 
                 db.Group.Add(groups);
                 db.SaveChanges();
