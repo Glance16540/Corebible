@@ -12,6 +12,7 @@ using Microsoft.AspNet.Identity;
 
 namespace Corebible.Controllers
 {
+    [Authorize]
     public class GroupsController : Universal
     {
         // GET: Groups
