@@ -6,6 +6,42 @@
     var user = User.Identity.GetUserId();
 }
 
+<head>
+    <style>
+        .comment-container {
+            border: 2px solid #dedede;
+            background-color: #f1f1f1;
+            border-radius: 5px;
+            padding: 10px;
+        }
+
+            .comment-container::after {
+                content: "";
+                clear: both;
+                display: table;
+            }
+
+            .comment-container img {
+                float: left;
+                max-width: 120px;
+                width: 100%;
+                margin-right: 20px;
+                border-radius: 50%;
+            }
+
+        .time-right {
+            float: right;
+            color: #aaa;
+        }
+
+        .name-left {
+            float: left;
+            color: #aaa;
+        }
+    </style>
+</head>
+
+
 <a href="@Url.Action("Index", "Groups")">
     <span class="fa fa-arrow-circle-left" style="font-size:32px"></span>
 </a>
@@ -122,13 +158,50 @@
         Chat with your Group
     </h2>
 
-    <textarea class="text-center" placeholder="Message to your group members..." name="Comments" cols="80" rows="6"></textarea>
+    @using (Html.BeginForm("CreateComment", "Groups", FormMethod.Post))
+    {
+        @Html.AntiForgeryToken()
 
-    <br />
+        <input name="GroupId" value="@Model.Id" hidden />
 
-    <input type="submit" value="Send Message" class="btn btn-primary" />
+        <textarea class="text-center" placeholder="Message to your group members..." name="Body" cols="80" rows="5"></textarea>
 
-    <br />
+        <br />
 
-    <!--COMMENTS-->
+        <input type="submit" value="Send Message" class="btn btn-primary" />
+
+    }
 </center>
+
+<br />
+
+<!--COMMENTS-->
+@if (Model.Comments.Count == 0)
+{
+    <i>No Messages at this time..</i>
+}
+else
+{
+    foreach (var comment in Model.Comments)
+    {
+        <div class="comment-container">
+            <a class="pull-right" href="@Url.Action("DeleteComment", "Groups", new { id = comment.Id })">Delete</a>
+
+            <a href="@Url.Action("UserProfile", "Account", new { id = comment.AuthorId })">
+                <img src="@comment.Author.ProfilePic" alt="Profile Picture" />
+            </a>
+
+            <br />
+
+            <p>@comment.Body</p>
+
+            <br />
+
+            <a href="@Url.Action("UserProfile", "Account", new { id = comment.AuthorId })">
+                <p class="name-left">@comment.Author.FullName</p>
+            </a>
+            <p class="time-right">@comment.Created.ToString("d")</p>
+        </div>
+    }
+}
+
