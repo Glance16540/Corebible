@@ -60,7 +60,14 @@
                     @Html.DisplayFor(modelItem => item.Name)
                 </a>
             </td>
-            <td style="padding: 25px 0 15px 0"></td>
+            @if (item.Members.Count == 0)
+            {
+                <td style="padding: 25px 0 15px 0">There Are No Members In This Group</td>
+            }
+            else
+            {
+                <td style="padding: 25px 0 15px 0">@item.Members.Count</td>
+            }
             @if (item.Active == true)
             {
                 <td style="padding: 25px 0 15px 0">
@@ -73,7 +80,7 @@
                     Closed
                 </td>
             }
-            <td style="padding: 25px 0 15px 0"></td>
+            <td style="padding: 25px 0 15px 0">@item.Owner.FullName</td>
             <td style="padding: 25px 0 15px 0">
 
                 @if (User.Identity.GetUserId() == item.OwnerId)
