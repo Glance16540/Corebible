@@ -1,0 +1,38 @@
+﻿@model Corebible.Models.ApplicationUser
+
+
+
+
+
+
+
+<section class="box nobox">
+    <div class="content-body">
+        <div class="row">
+            <div class="col-md-12">
+                <div class="uprofile-image">
+                    <img src="@Model.ProfilePic" alt="Profile Picture" style="border: 1px solid #8da0aa ; margin-top: 15px; max-width: 180px; max-height:300px; background-color: white" />
+                </div>
+                <div class="uprofile-name">
+                    <h3>
+                        <a href="#">@Html.DisplayFor(model => model.FullName)</a>
+                        <!-- Available statuses: online, idle, busy, away and offline -->
+                        <span class="uprofile-status online"></span>
+                    </h3>
+
+                </div>
+                <div class="uprofile-info">
+                    <ul class="list-unstyled">
+                        <li><i class='fa fa-globe'></i> @Model.TimeZone </li>
+
+                        <li><i class='fa fa-anchor'></i> @Html.Raw(Model.Bio) </li>
+                    </ul>
+                </div>
+                <div class="uprofile-buttons">
+                        <a class="btn btn-md btn-primary">Send Message</a>
+                        <a class="btn btn-md btn-primary" href="@Url.Action("AddFriends", "Friends", new { id = Model.Id })">Add as Friend</a>
+                    </div>
+            </div>
+        </div>
+    </div>
+</section>

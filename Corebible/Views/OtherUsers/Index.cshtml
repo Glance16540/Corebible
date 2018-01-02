@@ -1,0 +1,36 @@
+﻿@model ICollection<Corebible.Models.ApplicationUser>
+    @using Microsoft.AspNet.Identity;
+<link href="~/Assets/plugins/bootstrap/css/bootstrap.min.css" rel="stylesheet" type="text/css" />
+@{
+    ViewBag.Title = "Index";
+}
+
+<h2>People! </h2>
+
+
+<div class="row">
+
+    @foreach (var item in Model)
+    {
+
+        <div class="col-md-3">
+            <a href="@Url.Action("PersonProfile","OtherUsers", new { id = item.Id })">
+                <img src="@item.ProfilePic" alt="user-image" class="img-responsive img-circle img-inline" style="width:100px;height:100px">
+                <div>
+                    @item.FullName
+                </div>
+            </a> 
+            <br />
+        </div>
+
+
+    }
+</div>
+
+
+
+
+
+
+
+

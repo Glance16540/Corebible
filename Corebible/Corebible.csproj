@@ -197,9 +197,11 @@
     <Compile Include="App_Start\RouteConfig.cs" />
     <Compile Include="App_Start\Startup.Auth.cs" />
     <Compile Include="Controllers\AccountController.cs" />
+    <Compile Include="Controllers\FriendsController.cs" />
     <Compile Include="Controllers\GroupsController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\ManageController.cs" />
+    <Compile Include="Controllers\OtherUsersController.cs" />
     <Compile Include="Controllers\PlansController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
@@ -211,6 +213,7 @@
     <Compile Include="Models\CodeFirst\Groupcomments.cs" />
     <Compile Include="Models\CodeFirst\Groups.cs" />
     <Compile Include="Models\CodeFirst\Notification.cs" />
+    <Compile Include="Models\CodeFirst\OtherUsers.cs" />
     <Compile Include="Models\CodeFirst\PlanReview.cs" />
     <Compile Include="Models\CodeFirst\Plans.cs" />
     <Compile Include="Models\EmailModel.cs" />
@@ -2771,6 +2774,18 @@
     <Content Include="Views\Manage\FAQ.cshtml" />
     <Content Include="Views\Home\Chat.cshtml" />
     <Content Include="Views\Groups\Featured.cshtml" />
+    <Content Include="Views\Friends\Create.cshtml" />
+    <Content Include="Views\Friends\Delete.cshtml" />
+    <Content Include="Views\Friends\Details.cshtml" />
+    <Content Include="Views\Friends\Edit.cshtml" />
+    <Content Include="Views\Friends\Index.cshtml" />
+    <Content Include="Views\Friends\FindFriends.cshtml" />
+    <Content Include="Views\OtherUsers\Create.cshtml" />
+    <Content Include="Views\OtherUsers\Delete.cshtml" />
+    <Content Include="Views\OtherUsers\Details.cshtml" />
+    <Content Include="Views\OtherUsers\Edit.cshtml" />
+    <Content Include="Views\OtherUsers\Index.cshtml" />
+    <Content Include="Views\OtherUsers\PersonProfile.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
