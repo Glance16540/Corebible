@@ -64,6 +64,17 @@
             <a href="#" title="Report Group" class="btn btn-danger">Report Group</a>
 
             <br />
+
+            @using (Html.BeginForm("JoinGroup", "Groups", FormMethod.Post))
+            {
+                @Html.AntiForgeryToken()
+
+                <input name="Id" value="@Model.Id" hidden />
+
+                <input type="submit" class="btn btn-primary" value="Join Group" />
+            }
+
+            <br />
             <br />
 
             @if (User.Identity.GetUserId() == Model.OwnerId)
@@ -77,7 +88,7 @@
                 <a href="@Url.Action("Delete", "Groups", new { id = Model.Id })" title="Delete Group">
                     <span style="font-size:25px;color:red" class="fa fa fa-trash-o"></span>
                 </a>
-            }
+                }
         </center>
     </div>
 </div>

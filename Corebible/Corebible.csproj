@@ -220,6 +220,7 @@
     <Compile Include="Models\CodeFirst\FriendRequest.cs" />
     <Compile Include="Models\CodeFirst\FriendStatus.cs" />
     <Compile Include="Models\Helpers\CustomHTMLHelpers.cs" />
+    <Compile Include="Models\Helpers\GroupHelper.cs" />
     <Compile Include="Models\IdentityModels.cs" />
     <Compile Include="Models\ManageViewModels.cs" />
     <Compile Include="Models\Universal.cs" />
