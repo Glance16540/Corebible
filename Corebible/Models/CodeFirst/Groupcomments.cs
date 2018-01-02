@@ -11,9 +11,9 @@ namespace Corebible.Models.CodeFirst
         public string Body { get; set; }
         public DateTime Created { get; set; }
         public int GroupId { get; set; }
-        public int AuthorId { get; set; }
+        public string AuthorId { get; set; }
 
         public virtual Groups Group { get; set; }
-        public ApplicationUser User { get; set; }
+        public ApplicationUser Author { get; set; }
     }
 }

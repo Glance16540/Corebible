@@ -39,13 +39,14 @@ namespace Corebible.Models
             PlanReviews = new HashSet<PlanReview>();
             Groups = new HashSet<Groups>();
             Friends = new HashSet<Friends>();
+
         }
 
         public virtual ICollection<Groupcomments> Groupcomment { get; set; }
         public virtual ICollection<PlanReview> PlanReviews { get; set; }
         public virtual ICollection<Groups> Groups { get; set; }
         public virtual ICollection<Friends> Friends { get; set; }
-
+     
 
         public async Task<ClaimsIdentity> GenerateUserIdentityAsync(UserManager<ApplicationUser> manager)
         {
@@ -73,6 +74,8 @@ namespace Corebible.Models
         public DbSet<Plans> Plan { get; set; }
         public DbSet<PlanReview> PlanReviews { get; set; }
         public DbSet<Notification>Notifications { get; set; }
+        public DbSet<Friends>Friends { get; set; }
+        public DbSet<OtherUsers> otherusers { get; set; }
 
       
     }

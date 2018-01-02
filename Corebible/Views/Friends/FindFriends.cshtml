@@ -1,0 +1,16 @@
+﻿@model IEnumerable<Corebible.Models.CodeFirst.Friends>
+
+@{
+    ViewBag.Title = "FindFriends";
+}
+
+<h2>Find Friends</h2>
+
+
+
+
+@for(var users in Model )
+    {
+        @users.otherusers
+    }
+
