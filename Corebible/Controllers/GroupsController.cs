@@ -155,6 +155,19 @@ namespace Corebible.Controllers
             return RedirectToAction("Details", "Groups", new { id = groupComments.GroupId });
         }
 
+        // POST: Groups/Join
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public ActionResult JoinGroup([Bind(Include = "Id,MemberCount,Name,Description,Active,OwnerId,Created")] Groups groups)
+        {
+            var user = db.Users.Find(User.Identity.GetUserId());
+
+            user.Groups.Add(groups);
+            db.SaveChanges();
+
+            return RedirectToAction("Details", new { id = groups.Id });
+        }
+
 
         protected override void Dispose(bool disposing)
         {
