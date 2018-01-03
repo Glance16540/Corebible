@@ -149,7 +149,7 @@ namespace Corebible.Controllers
 
                 db.GroupComment.Add(groupComments);
                 db.SaveChanges();
-                return RedirectToAction("Index");
+                return RedirectToAction("Details", "Groups", new { id = groupComments.GroupId });
             }
 
             return RedirectToAction("Details", "Groups", new { id = groupComments.GroupId });
