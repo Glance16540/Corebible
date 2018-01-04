@@ -2790,6 +2790,7 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
+    <Folder Include="Assets\GroupImages\" />
     <Folder Include="Assets\plugins\datatables\extensions\FixedColumns\examples\integration\" />
   </ItemGroup>
   <ItemGroup>

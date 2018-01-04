@@ -54,13 +54,13 @@
                 display: block;
                 float: left;
             }
-            /***********************/
-            /* DROPDOWN */
-            /* The container <div> - needed to position the dropdown content */
-            .dropdown {
-                position: relative;
-                display: inline-block;
-            }
+        /***********************/
+        /* DROPDOWN */
+        /* The container <div> - needed to position the dropdown content */
+        .dropdown {
+            position: relative;
+            display: inline-block;
+        }
 
         /* Dropdown Content (Hidden by Default) */
         .dropdown-content {
@@ -92,16 +92,14 @@
                 display: block;
             }
 
-            /* Change color of dropdown links on hover */
-            .dropdown-content input:hover {
-                background-color: #f1f1f1
-            }
+                /* Change color of dropdown links on hover */
+                .dropdown-content input:hover {
+                    background-color: #f1f1f1
+                }
 
-            .dropbtn:focus {
-                outline: none;
-            }
-
-                
+        .dropbtn:focus {
+            outline: none;
+        }
 
         /* Show the dropdown menu (use JS to add this class to the .dropdown-content container when the user clicks on the dropdown button) */
         .show {
@@ -110,56 +108,59 @@
     </style>
 </head>
 
+<div class="group-header" style="background-image:url(@Model.Image);padding:15px 5px 15px 5px;">
+    <a href="@Url.Action("Index", "Groups")">
+        <span class="fa fa-arrow-circle-left" style="font-size:32px"></span>
+    </a>
 
-<a href="@Url.Action("Index", "Groups")">
-    <span class="fa fa-arrow-circle-left" style="font-size:32px"></span>
-</a>
+    <br />
+    <br />
 
-<br />
-<br />
+    <div class="row">
+        <div class="col-md-10">
+            <h2>
+                @Model.Name
+            </h2>
 
-<div class="row">
-    <div class="col-md-10">
-        <h2>@Model.Name</h2>
-
-        <h4>
-            <i>
-                @Html.DisplayFor(model => model.Description)
-            </i>
-        </h4>
-    </div>
-
-    <div class="dropdown">
-        <button onclick="options()" class="dropbtn btn btn-primary">More Options <span class="fa fa-caret-down"></span></button>
-        <div id="myDropdown" class="dropdown-content">
-            <center>
-                <a href="#" title="Invite Members">Invite Members</a>
-
-                @if (User.Identity.GetUserId() == Model.OwnerId)
-                {
-                    <a href="@Url.Action("Edit", "Groups", new { id = Model.Id })" title="Edit Group">
-                        Edit Group
-                    </a>
-
-                    <hr />
-
-                    <a href="@Url.Action("Delete", "Groups", new { id = Model.Id })" style="color:red" title="Delete Group">
-                        Close Group
-                    </a>
-                }
-
-                <a href="#" style="color:red" title="Report Group">Report Group</a>
-            </center>
+            <h4>
+                <i>
+                    @Html.DisplayFor(model => model.Description)
+                </i>
+            </h4>
         </div>
-    </div>
 
+        <div class="dropdown">
+            <button onclick="options()" class="dropbtn btn btn-primary">More Options <span class="fa fa-caret-down"></span></button>
+            <div id="myDropdown" class="dropdown-content">
+                <center>
+                    <a href="#" title="Invite Members">Invite Members</a>
+
+                    @if (User.Identity.GetUserId() == Model.OwnerId)
+                    {
+                        <a href="@Url.Action("Edit", "Groups", new { id = Model.Id })" title="Edit Group">
+                            Edit Group
+                        </a>
+
+                        <hr />
+
+                        <a href="@Url.Action("Delete", "Groups", new { id = Model.Id })" style="color:red" title="Delete Group">
+                            Close Group
+                        </a>
+                    }
+
+                    <a href="#" style="color:red" title="Report Group">Report Group</a>
+                </center>
+            </div>
+        </div>
+
+    </div>
 </div>
 
 <hr />
 <br />
 
 <div class="row">
-    <div class="col-md-6">
+    <div class="col-md-8">
         <!--GROUP COMMENTS-->
         <center>
             @using (Html.BeginForm("CreateComment", "Groups", FormMethod.Post))
@@ -168,7 +169,7 @@
 
                 <input name="GroupId" value="@Model.Id" hidden />
 
-                <textarea class="text-center" placeholder="Write to your Group..." name="Body" cols="55" rows="5"></textarea>
+                <textarea class="text-center" placeholder="Write to your Group..." name="Body" cols="65" rows="5"></textarea>
 
                 <br />
 
@@ -223,7 +224,7 @@
                                         {
                                             <a href="#" style="color:red">Delete</a>
                                         }
-                                        
+
                                         <a href="#">Report to Admin</a>
 
                                         <a href="#">Report Comment</a>
@@ -250,7 +251,7 @@
             }
         }
     </div>
-    <div class="col-md-6">
+    <div class="col-md-4">
         <!--GROUP DETAILS-->
 
         <div class="panel">
