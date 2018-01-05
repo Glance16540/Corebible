@@ -18,6 +18,9 @@ namespace Corebible.Models.CodeFirst
         public bool Active { get; set; }
         public string OwnerId { get; set; }
         public DateTime Created { get; set; }
+        public bool Private { get; set; }
+        public string Image { get; set; }
+
 
         public virtual ApplicationUser Owner { get; set; }
 

@@ -9,12 +9,51 @@
 
         tr:nth-child(odd) {
             background-color: rgb(31, 181, 172);
-            color:white;
-        }
-
-        tr:nth-child(odd) a {
             color: white;
         }
+
+            tr:nth-child(odd) a {
+                color: white;
+            }
+
+        .groups-content ul {
+            list-style: none;
+            margin: 0;
+            padding: 0;
+        }
+
+            .groups-content ul li {
+                display: block;
+                float: left;
+            }
+
+        /* GROUPS NAVBAR */
+        .groups-nav {
+            background-color: white;
+            width: 100%;
+            border-bottom: solid 1px #edecec;
+        }
+
+        .groups-nav ul {
+            list-style: none;
+            margin: 0;
+            padding-bottom: 40px;
+        }
+
+        .groups-nav ul li {
+            display: block;
+            float: left;
+            padding: 0 10px 0 10px;
+        }
+
+        .groups-nav ul li a {
+            text-decoration: none;
+        }
+
+            .active {
+                border-bottom: solid 2px rgb(31, 181, 172);
+                padding-bottom: 15px;
+            }
     </style>
 </head>
 
@@ -22,75 +61,114 @@
     ViewBag.Title = "Index";
 }
 
-<div class="row">
-    <div class="col-md-6">
-        <h2>My Groups</h2>
+<div class="groups-nav">
+    <div class="row">
+        <div class="col-md-6">
+            <ul>
+                <li class="active">
+                    <a href="#">My Groups</a>
+                </li>
+                <li>
+                    <a href="@Url.Action("Featured", "Groups")">Find New Groups</a>
+                </li>
+            </ul>
+        </div>
+        <div class="col-md-6">
+            <a href="@Url.Action("Create", "Groups")" class="btn btn-primary pull-right">Create Group</a>
+        </div>
     </div>
-    <div class="col-md-6">
-        <p class="pull-right">
-            <a href="@Url.Action("Create", "Groups")" class="btn btn-primary">Create New Group</a>
-        </p>
-    </div>
+    
 </div>
+
+@*<div class="row">
+        <div class="col-md-6">
+            <h2>My Groups</h2>
+        </div>
+        <div class="col-md-6">
+            <p class="pull-right">
+                <a href="@Url.Action("Create", "Groups")" class="btn btn-primary">Create New Group</a>
+            </p>
+        </div>
+    </div>*@
 
 <br />
 
-<table class="table text-center">
-    <tr>
-        <th class="text-center">
-            Group Name
-        </th>
-        <th class="text-center">
-            No. of Members
-        </th>
-        <th class="text-center">
-            Status
-        </th>
-        <th class="text-center">
-            Group Owner
-        </th>
-        <th></th>
-    </tr>
+<div class="row groups-content">
+    @foreach (var group in Model)
+    {
+        <div class="col-md-6" style="padding:15px 0 10px 0;">
 
-@foreach (var item in Model)
-{
-        <tr style="border-bottom: solid 2px rgb(31, 181, 172)">
-            <td style="padding: 15px 0 15px 0">
-                <a href="@Url.Action("Details", "Groups", new { id = item.Id })">
-                    @Html.DisplayFor(modelItem => item.Name)
-                </a>
-            </td>
-            @if (item.Members.Count == 0)
-            {
-                <td style="padding: 25px 0 15px 0">There Are No Members In This Group</td>
-            }
-            else
-            {
-                <td style="padding: 25px 0 15px 0">@item.Members.Count</td>
-            }
-            @if (item.Active == true)
-            {
-                <td style="padding: 25px 0 15px 0">
-                    Active
-                </td>
-            }
-            else
-            {
-                <td style="padding: 25px 0 15px 0">
-                    Closed
-                </td>
-            }
-            <td style="padding: 25px 0 15px 0">@item.Owner.FullName</td>
-            <td style="padding: 25px 0 15px 0">
+            <a href="@Url.Action("Details", "Groups", new { id = group.Id })">
+                <ul>
+                    <li>
+                        <img src="@group.Image" alt="Group Image" style="width:100%;max-width:100px;height:100px;border-radius:50%;border:solid 1px black" />
+                    </li>
+                    <li style="padding-left: 25px">
+                        <h3>@group.Name</h3>
+                    </li>
+                </ul>
+            </a>
 
-                @if (User.Identity.GetUserId() == item.OwnerId)
-                {
-                    @Html.ActionLink("Edit Group", "Edit", new { id = item.Id }) <br />
-                    @Html.ActionLink("Delete Group", "Delete", new { id = item.Id }) <br />
-                }
+        </div>
+    }
+</div>
 
-            </td>
+@*<table class="table text-center">
+        <tr>
+            <th class="text-center">
+                Group Name
+            </th>
+            <th class="text-center">
+                No. of Members
+            </th>
+            <th class="text-center">
+                Status
+            </th>
+            <th class="text-center">
+                Group Owner
+            </th>
+            <th></th>
         </tr>
-}
 
-</table>
+    @foreach (var item in Model)
+    {
+            <tr style="border-bottom: solid 2px rgb(31, 181, 172)">
+                <td style="padding: 15px 0 15px 0">
+                    <a href="@Url.Action("Details", "Groups", new { id = item.Id })">
+                        @Html.DisplayFor(modelItem => item.Name)
+                    </a>
+                </td>
+                @if (item.Members.Count == 0)
+                {
+                    <td style="padding: 25px 0 15px 0">There Are No Members In This Group</td>
+                }
+                else
+                {
+                    <td style="padding: 25px 0 15px 0">@item.Members.Count</td>
+                }
+                @if (item.Active == true)
+                {
+                    <td style="padding: 25px 0 15px 0">
+                        Active
+                    </td>
+                }
+                else
+                {
+                    <td style="padding: 25px 0 15px 0">
+                        Closed
+                    </td>
+                }
+                <td style="padding: 25px 0 15px 0">@item.Owner.FullName</td>
+                <td style="padding: 25px 0 15px 0">
+
+                    @if (User.Identity.GetUserId() == item.OwnerId)
+                    {
+                        @Html.ActionLink("Edit Group", "Edit", new { id = item.Id }) <br />
+                        @Html.ActionLink("Delete Group", "Delete", new { id = item.Id }) <br />
+                    }
+
+                </td>
+            </tr>
+    }
+
+    </table>*@

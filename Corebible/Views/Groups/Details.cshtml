@@ -8,11 +8,21 @@
 
 <head>
     <style>
-        .comment-container {
-            border: 2px solid #dedede;
+        textarea {
+            outline: none;
             background-color: #f1f1f1;
+            padding: 3px;
+            border-radius: 5px
+        }
+
+        /***********************/
+        /* COMMENT */
+
+        .comment-container {
+            border: 2px solid #808080;
+            background-color: white;
             border-radius: 5px;
-            padding: 10px;
+            padding: 5px;
         }
 
             .comment-container::after {
@@ -22,197 +32,291 @@
             }
 
             .comment-container img {
-                float: left;
-                max-width: 120px;
+                position: inherit;
+                left: 0;
+                top: 0;
+                max-width: 80px;
                 width: 100%;
-                margin-right: 20px;
                 border-radius: 50%;
             }
 
         .time-right {
-            float: right;
             color: #aaa;
         }
 
-        .name-left {
-            float: left;
-            color: #aaa;
+        .comment-container ul {
+            list-style: none;
+            margin: 0;
+            padding: 0;
+        }
+
+            .comment-container ul li {
+                display: block;
+                float: left;
+            }
+        /***********************/
+        /* DROPDOWN */
+        /* The container <div> - needed to position the dropdown content */
+        .dropdown {
+            position: relative;
+            display: inline-block;
+        }
+
+        /* Dropdown Content (Hidden by Default) */
+        .dropdown-content {
+            display: none;
+            position: absolute;
+            background-color: #f9f9f9;
+            min-width: 160px;
+            box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
+            z-index: 1;
+        }
+
+            /* Links inside the dropdown */
+            .dropdown-content a {
+                color: black;
+                padding: 8px 12px;
+                text-decoration: none;
+                display: block;
+            }
+
+                /* Change color of dropdown links on hover */
+                .dropdown-content a:hover {
+                    background-color: #f1f1f1
+                }
+
+            .dropdown-content input {
+                color: black;
+                padding: 8px 12px;
+                text-decoration: none;
+                display: block;
+            }
+
+                /* Change color of dropdown links on hover */
+                .dropdown-content input:hover {
+                    background-color: #f1f1f1
+                }
+
+        .dropbtn:focus {
+            outline: none;
+        }
+
+        /* Show the dropdown menu (use JS to add this class to the .dropdown-content container when the user clicks on the dropdown button) */
+        .show {
+            display: block;
         }
     </style>
 </head>
 
+<div class="group-header" style="background-image:url(@Model.Image);padding:15px 5px 15px 5px;">
+    <a href="@Url.Action("Index", "Groups")">
+        <span class="fa fa-arrow-circle-left" style="font-size:32px"></span>
+    </a>
 
-<a href="@Url.Action("Index", "Groups")">
-    <span class="fa fa-arrow-circle-left" style="font-size:32px"></span>
-</a>
+    <br />
+    <br />
 
-<br />
-<br />
+    <div class="row">
+        <div class="col-md-10">
+            <h2>
+                @Model.Name
+            </h2>
 
-<div class="row">
-    <div class="col-md-10">
-        <h2>@Model.Name</h2>
+            <h4>
+                <i>
+                    @Html.DisplayFor(model => model.Description)
+                </i>
+            </h4>
+        </div>
 
-        <h4>
-            <i>
-                @Html.DisplayFor(model => model.Description)
-            </i>
-        </h4>
-    </div>
-    <div class="col-md-2">
-        <center>
-            <a href="#" title="Report Group" class="btn btn-danger">Report Group</a>
+        <div class="dropdown">
+            <button onclick="options()" class="dropbtn btn btn-primary">More Options <span class="fa fa-caret-down"></span></button>
+            <div id="myDropdown" class="dropdown-content">
+                <center>
+                    <a href="#" title="Invite Members">Invite Members</a>
 
-            <br />
+                    @if (User.Identity.GetUserId() == Model.OwnerId)
+                    {
+                        <a href="@Url.Action("Edit", "Groups", new { id = Model.Id })" title="Edit Group">
+                            Edit Group
+                        </a>
 
-            @using (Html.BeginForm("JoinGroup", "Groups", FormMethod.Post))
-            {
-                @Html.AntiForgeryToken()
+                        <hr />
 
-                <input name="Id" value="@Model.Id" hidden />
+                        <a href="@Url.Action("Delete", "Groups", new { id = Model.Id })" style="color:red" title="Delete Group">
+                            Close Group
+                        </a>
+                    }
 
-                <input type="submit" class="btn btn-primary" value="Join Group" />
-            }
+                    <a href="#" style="color:red" title="Report Group">Report Group</a>
+                </center>
+            </div>
+        </div>
 
-            <br />
-            <br />
-
-            @if (User.Identity.GetUserId() == Model.OwnerId)
-            {
-                <a href="@Url.Action("Edit", "Groups", new { id = Model.Id })" title="Edit Group">
-                    <span style="font-size:25px" class="fa fa-pencil-square-o"></span>
-                </a>
-
-                <span>&nbsp; &nbsp;</span>
-
-                <a href="@Url.Action("Delete", "Groups", new { id = Model.Id })" title="Delete Group">
-                    <span style="font-size:25px;color:red" class="fa fa fa-trash-o"></span>
-                </a>
-                }
-        </center>
     </div>
 </div>
 
 <hr />
 <br />
 
-<div>
+<div class="row">
+    <div class="col-md-8">
+        <!--GROUP COMMENTS-->
+        <center>
+            @using (Html.BeginForm("CreateComment", "Groups", FormMethod.Post))
+            {
+                @Html.AntiForgeryToken()
 
-    <div class="row">
-        <div class="col-md-4">
-            <div class="panel">
-                <div class="panel-heading">
-                    <h3 class="text-center">
-                        Status
-                    </h3>
-                </div>
-                <div class="panel-body">
-                    <center>
-                        @if (Model.Active == true)
-                        {
-                            <p>Active</p>
-                        }
-                        else
-                        {
-                            <p>Closed</p>
-                        }
-                    </center>
-                </div>
-            </div>
-        </div>
-        <div class="col-md-4">
-            <div class="panel">
-                <div class="panel-heading">
-                    <h2 class="text-center">
-                        Members
-                    </h2>
-                </div>
-                <div class="panel-body">
-                    <center>
-                        @if (Model.Members.Count == 0)
-                        {
-                            <i>This Group has no Members</i>
-                        }
-                        else
-                        {
-                            foreach (var member in Model.Members)
-                            {
-                                @member.FullName <br />
-                            }
-                        }
-                    </center>
-                </div>
-            </div>
-        </div>
-        <div class="col-md-4">
-            <div class="panel">
-                <div class="panel-heading">
-                    <h3 class="text-center">
-                        Group Owner
-                    </h3>
-                </div>
-                <div class="panel-body">
-                    <center>
-                        <a style="color:black" href="@Url.Action("UserProfile", "Account", new { id = Model.OwnerId }, null)">
-                            @Model.Owner.FullName
-                        </a>
-                    </center>
-                </div>
-            </div>
-        </div>
-    </div>
+                <input name="GroupId" value="@Model.Id" hidden />
 
-</div>
+                <textarea class="text-center" placeholder="Write to your Group..." name="Body" cols="65" rows="5"></textarea>
 
-<center>
-    <h2>
-        Chat with your Group
-    </h2>
+                <br />
 
-    @using (Html.BeginForm("CreateComment", "Groups", FormMethod.Post))
-    {
-        @Html.AntiForgeryToken()
+                <input type="submit" value="Post" class="btn btn-primary" />
 
-        <input name="GroupId" value="@Model.Id" hidden />
-
-        <textarea class="text-center" placeholder="Message to your group members..." name="Body" cols="80" rows="5"></textarea>
+            }
+        </center>
 
         <br />
 
-        <input type="submit" value="Send Message" class="btn btn-primary" />
+        <h4>
+            <u>Feed</u>
+        </h4>
 
-    }
-</center>
+        <br />
 
-<br />
+        <!--COMMENTS-->
+        @if (Model.Comments.Count == 0)
+            {
+            <center>
+                <i>No Post at this time..</i>
+            </center>
+        }
+        else
+        {
+            foreach (var comment in Model.Comments)
+            {
+                <div class="comment-container">
+                    <div class="row">
+                        <div class="col-md-6">
+                            <ul>
+                                <li>
+                                    <a href="@Url.Action("UserProfile", "Account", new { id = comment.AuthorId })">
+                                        <img src="@comment.Author.ProfilePic" alt="Profile Picture" />
+                                    </a>
+                                </li>
+                                <li>
+                                    <a href="@Url.Action("UserProfile", "Account", new { id = comment.AuthorId })">
+                                        <p class="name-left">@comment.Author.FullName</p>
+                                    </a>
 
-<!--COMMENTS-->
-@if (Model.Comments.Count == 0)
-{
-    <i>No Messages at this time..</i>
-}
-else
-{
-    foreach (var comment in Model.Comments)
-    {
-        <div class="comment-container">
-            <a class="pull-right" href="@Url.Action("DeleteComment", "Groups", new { id = comment.Id })">Delete</a>
+                                    <p class="time-right">@comment.Created.ToString("d")</p>
+                                </li>
+                            </ul>
+                        </div>
+                        <div class="col-md-6">
+                            <div class="dropdown pull-right">
+                                <button style="background-color:transparent;border:none;font-size:25px" onclick="comment()" class="dropbtn">...</button>
+                                <div id="commentDrop" class="dropdown-content">
+                                    <center>
+                                        @if (comment.AuthorId == User.Identity.GetUserId())
+                                        {
+                                            <a href="#" style="color:red">Delete</a>
+                                        }
 
-            <a href="@Url.Action("UserProfile", "Account", new { id = comment.AuthorId })">
-                <img src="@comment.Author.ProfilePic" alt="Profile Picture" />
-            </a>
+                                        <a href="#">Report to Admin</a>
 
-            <br />
+                                        <a href="#">Report Comment</a>
+                                    </center>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
 
-            <p>@comment.Body</p>
+                    <p style="padding-top:5px">@comment.Body</p>
 
-            <br />
+                    <hr />
 
-            <a href="@Url.Action("UserProfile", "Account", new { id = comment.AuthorId })">
-                <p class="name-left">@comment.Author.FullName</p>
-            </a>
-            <p class="time-right">@comment.Created.ToString("d")</p>
+                    <ul>
+                        <li style="padding: 0 15px 5px 10px">
+                            <a href="#">Like</a>
+                        </li>
+                        <li>
+                            <a href="#">Comment</a>
+                        </li>
+                    </ul>
+
+                </div>
+            }
+        }
+    </div>
+    <div class="col-md-4">
+        <!--GROUP DETAILS-->
+
+        <div class="panel">
+            <div class="panel-heading">
+                <h2 class="text-center">
+                    Members
+                </h2>
+            </div>
+            <div class="panel-body">
+                <center>
+                    @foreach (var member in Model.Members)
+                    {
+                        @member.FullName <br />
+                    }
+                </center>
+            </div>
         </div>
-    }
-}
+    </div>
+</div>
 
+
+
+
+<script>
+    /* When the user clicks on the button,
+toggle between hiding and showing the dropdown content */
+    function options() {
+        document.getElementById("myDropdown").classList.toggle("show");
+    }
+
+    // Close the dropdown menu if the user clicks outside of it
+    window.onclick = function (event) {
+        if (!event.target.matches('.dropbtn')) {
+
+            var dropdowns = document.getElementsByClassName("dropdown-content");
+            var i;
+            for (i = 0; i < dropdowns.length; i++) {
+                var openDropdown = dropdowns[i];
+                if (openDropdown.classList.contains('show')) {
+                    openDropdown.classList.remove('show');
+                }
+            }
+        }
+    }
+</script>
+
+<script>
+    /* When the user clicks on the button,
+toggle between hiding and showing the dropdown content */
+    function comment() {
+        document.getElementById("commentDrop").classList.toggle("show");
+    }
+
+    // Close the dropdown menu if the user clicks outside of it
+    window.onclick = function (event) {
+        if (!event.target.matches('.dropbtn')) {
+
+            var dropdowns = document.getElementsByClassName("dropdown-content");
+            var i;
+            for (i = 0; i < dropdowns.length; i++) {
+                var openDropdown = dropdowns[i];
+                if (openDropdown.classList.contains('show')) {
+                    openDropdown.classList.remove('show');
+                }
+            }
+        }
+    }
+</script>
