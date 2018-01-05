@@ -29,8 +29,18 @@
                     </ul>
                 </div>
                 <div class="uprofile-buttons">
+                    @using (Html.BeginForm("AddFriends","Friends", FormMethod.Post, new { id = Model.Id }))
+                    {
+                        @Html.AntiForgeryToken()
+                        <input name="PersonUserId" value="@Model.Id" hidden />
+                        <button type="submit" > Add Friend</button>
+                    }
+
+
+
                         <a class="btn btn-md btn-primary">Send Message</a>
-                        <a class="btn btn-md btn-primary" href="@Url.Action("AddFriends", "Friends", new { id = Model.Id })">Add as Friend</a>
+                    
+                      
                     </div>
             </div>
         </div>
