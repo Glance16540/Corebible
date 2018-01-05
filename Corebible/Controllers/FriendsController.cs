@@ -8,6 +8,7 @@ using System.Web;
 using System.Web.Mvc;
 using Corebible.Models;
 using Corebible.Models.CodeFirst;
+using Microsoft.AspNet.Identity;
 
 namespace Corebible.Controllers
 {
@@ -50,8 +51,12 @@ namespace Corebible.Controllers
         {
             if (ModelState.IsValid)
             {
-                var user = db.Users.Find(id);
-                friends.PersonUserId = user.Id;
+                var user = db.Users.Find(User.Identity.GetUserId());
+
+                user.Friends.Add(friends);
+                
+
+
        
                 db.Friends.Add(friends);
                 db.SaveChanges();

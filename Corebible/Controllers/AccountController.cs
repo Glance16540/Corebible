@@ -450,8 +450,11 @@ namespace Corebible.Controllers
         //GET: /Account/Profile
         public ActionResult UserProfile()
         {
+        
 
             var user = db.Users.Find(User.Identity.GetUserId());
+
+            ViewBag.UsersFriends = user.Friends.ToList();
             if (user.Id != null)
             {
                 var timezones = TimeZoneInfo.GetSystemTimeZones();
