@@ -87,7 +87,7 @@ namespace Corebible.Controllers
                         //Add's parentheses after the name with a number ex. filename(4)
                         fileName = string.Format(fileName + "(" + ++num + ")");
                         //Makes sure pPic gets updated with the new filename so it could check
-                        pPic = Path.Combine("/Assets/GroupImages/", fileName + Path.GetExtension(image.FileName));
+                        pPic = Path.Combine("~/Assets/GroupImages/", fileName + Path.GetExtension(image.FileName));
                     }
                     image.SaveAs(Path.Combine(Server.MapPath("~/Assets/GroupImages/"), fileName + Path.GetExtension(image.FileName)));
                 }
