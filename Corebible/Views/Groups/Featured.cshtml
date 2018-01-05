@@ -15,6 +15,107 @@
             tr:nth-child(odd) a {
                 color: white;
             }
+
+        .groups-content ul {
+            list-style: none;
+            margin: 0;
+            padding: 0;
+        }
+
+            .groups-content ul li {
+                display: block;
+                float: left;
+            }
+
+        /* GROUPS NAVBAR */
+        .groups-nav {
+            background-color: white;
+            width: 100%;
+            border-bottom: solid 1px #edecec;
+        }
+
+            .groups-nav ul {
+                list-style: none;
+                margin: 0;
+                padding-bottom: 40px;
+            }
+
+                .groups-nav ul li {
+                    display: block;
+                    float: left;
+                    padding: 0 10px 5px 10px;
+                }
+
+                    .groups-nav ul li a {
+                        text-decoration: none;
+                    }
+
+        .active {
+            border-bottom: solid 2px rgb(31, 181, 172);
+            padding-bottom: 15px;
+        }
+    </style>
+</head>
+
+@{
+    ViewBag.Title = "Featured";
+}
+
+<div class="groups-nav">
+    <div class="row">
+        <div class="col-md-6">
+            <ul>
+                <li>
+                    <a href="@Url.Action("Index", "Groups")">My Groups</a>
+                </li>
+                <li class="active">
+                    <a href="#">Find Groups</a>
+                </li>
+            </ul>
+        </div>
+        <div class="col-md-6">
+            <a href="@Url.Action("Create", "Groups")" class="btn btn-primary pull-right">Create Group</a>
+        </div>
+    </div>
+
+</div>
+
+<br />
+
+<div class="row groups-content">
+    @foreach (var group in Model)
+    {
+        <div class="col-md-6" style="padding:15px 0 10px 0;">
+
+            <a href="@Url.Action("Details", "Groups", new { id = group.Id })">
+                <ul>
+                    <li>
+                        <img src="@group.Image" alt="Group Image" style="width:100%;max-width:100px;height:100px;border-radius:50%;border:solid 1px black" />
+                    </li>
+                    <li style="padding-left: 25px">
+                        <h3>@group.Name</h3>
+                    </li>
+                </ul>
+            </a>
+
+        </div>
+    }
+</div>
+
+@*<head>
+    <style>
+        tr:nth-child(even) {
+            background-color: white;
+        }
+
+        tr:nth-child(odd) {
+            background-color: rgb(31, 181, 172);
+            color: white;
+        }
+
+            tr:nth-child(odd) a {
+                color: white;
+            }
     </style>
 </head>
 
@@ -77,4 +178,4 @@
         </tr>
     }
 
-</table>
+</table>*@
