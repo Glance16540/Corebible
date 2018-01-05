@@ -105,62 +105,61 @@
         .show {
             display: block;
         }
+
+        /* GROUP HEADER */
+        .group-header {
+            width: 100%;
+            height: 100%;
+            max-width: 853px;
+            max-height: 250px;
+            min-width: 853px;
+            min-height: 250px;
+            padding: 15px 2px 15px 5px;
+            background-repeat: no-repeat;
+            background-size: cover;
+        }
     </style>
 </head>
 
-<div class="group-header" style="background-image:url(@Model.Image);padding:15px 5px 15px 5px;">
+<div class="group-header" style="background-image:url(@Model.Image)">
     <a href="@Url.Action("Index", "Groups")">
         <span class="fa fa-arrow-circle-left" style="font-size:32px"></span>
     </a>
 
-    <br />
-    <br />
 
-    <div class="row">
-        <div class="col-md-10">
-            <h2>
-                @Model.Name
-            </h2>
+</div>
 
-            <h4>
-                <i>
-                    @Html.DisplayFor(model => model.Description)
-                </i>
-            </h4>
-        </div>
+<div class="dropdown">
+    <button onclick="options()" class="dropbtn pull-right btn btn-primary">More Options <span class="fa fa-caret-down"></span></button>
+    <div id="myDropdown" class="dropdown-content">
+        <center>
+            <a href="#" title="Invite Members">Invite Members</a>
 
-        <div class="dropdown">
-            <button onclick="options()" class="dropbtn btn btn-primary">More Options <span class="fa fa-caret-down"></span></button>
-            <div id="myDropdown" class="dropdown-content">
-                <center>
-                    <a href="#" title="Invite Members">Invite Members</a>
+            @if (User.Identity.GetUserId() == Model.OwnerId)
+            {
+                <a href="@Url.Action("Edit", "Groups", new { id = Model.Id })" title="Edit Group">
+                    Edit Group
+                </a>
 
-                    @if (User.Identity.GetUserId() == Model.OwnerId)
-                    {
-                        <a href="@Url.Action("Edit", "Groups", new { id = Model.Id })" title="Edit Group">
-                            Edit Group
-                        </a>
-
-                        <hr />
+                    <hr />
 
                         <a href="@Url.Action("Delete", "Groups", new { id = Model.Id })" style="color:red" title="Delete Group">
                             Close Group
                         </a>
-                    }
+            }
 
-                    <a href="#" style="color:red" title="Report Group">Report Group</a>
-                </center>
-            </div>
-        </div>
-
+            <a href="#" style="color:red" title="Report Group">Report Group</a>
+        </center>
     </div>
 </div>
+
+
 
 <hr />
 <br />
 
 <div class="row">
-    <div class="col-md-8">
+    <div class="col-md-7">
         <!--GROUP COMMENTS-->
         <center>
             @using (Html.BeginForm("CreateComment", "Groups", FormMethod.Post))
@@ -251,8 +250,24 @@
             }
         }
     </div>
-    <div class="col-md-4">
+    <div class="col-md-5">
         <!--GROUP DETAILS-->
+
+        <div class="panel">
+            <div class="panel-body">
+                <center>
+                    <h2>
+                        @Model.Name
+                    </h2>
+
+                    <h4>
+                        <i>
+                            @Html.DisplayFor(model => model.Description)
+                        </i>
+                    </h4>
+                </center>
+            </div>
+        </div>
 
         <div class="panel">
             <div class="panel-heading">
