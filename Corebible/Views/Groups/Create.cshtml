@@ -10,7 +10,7 @@
 <hr />
 
 
-@using (Html.BeginForm()) 
+@using (Html.BeginForm("Create", "Groups", FormMethod.Post, new { role = "form", enctype = "Multipart/form-data" }))
 {
     @Html.AntiForgeryToken()
     

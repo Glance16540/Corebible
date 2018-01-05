@@ -7,7 +7,7 @@
 <h2>Edit Group</h2>
 
 
-@using (Html.BeginForm())
+@using (Html.BeginForm("Edit", "Groups", FormMethod.Post, new { role = "form", enctype = "Multipart/form-data" }))
 {
     @Html.AntiForgeryToken()
     
